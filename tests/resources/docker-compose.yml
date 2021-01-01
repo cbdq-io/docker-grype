@@ -1,0 +1,8 @@
+---
+version: "3"
+
+services:
+  grype:
+    command: sleep infinity
+    container_name: grype
+    image: docker-grype:latest
