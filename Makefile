@@ -19,7 +19,7 @@ lint:
 	pycodestyle -v tests
 	docker run --rm -i hadolint/hadolint < doc ker-grype/Dockerfile
 
-push:
+push: build
 	echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
 	docker push cbdq/docker-grype:$(TAG)
 	docker push cbdq/docker-grype:latest
