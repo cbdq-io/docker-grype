@@ -17,6 +17,12 @@ Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker
 
 ### Docker Compose
 
-The file [examples/docker-compose.yml](examples/docker-compose.yml) contains
+Tested on Ubuntu.  The file [examples/docker-compose.yml](examples/docker-compose.yml) contains
 an example configuration that will test the `hello-world:latest` image.
-Tested on Ubuntu.
+
+This could be used by running the command (in the same directory as the
+`docker-compose.yml` file):
+
+```
+docker-compose run grype
+```
