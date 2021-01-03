@@ -17,7 +17,7 @@ cleanall: clean
 lint:
 	flake8 docker-grype/parse-grype-json.py
 	pycodestyle -v tests
-	docker run --rm -i hadolint/hadolint < doc ker-grype/Dockerfile
+	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
 
 push: build
 	echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
