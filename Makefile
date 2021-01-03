@@ -5,6 +5,9 @@ all: lint build test
 build:
 	docker build -f docker-grype/Dockerfile -t docker-grype:$(TAG) -t docker-grype:latest docker-grype
 
+changelog:
+	UNRELEASED_VERSION_LABEL=$(TAG) gitchangelog > CHANGELOG.md
+
 clean:
 	docker-compose -f tests/resources/docker-compose.yml down -t 0
 
