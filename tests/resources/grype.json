@@ -1,0 +1,164 @@
+{
+  "matches": [
+    {
+      "vulnerability": {
+        "id": "CVE-2018-12886",
+        "severity": "Critical",
+        "links": [
+          "https://security-tracker.debian.org/tracker/CVE-2018-12886"
+        ],
+        "cvssV2": {
+          "baseScore": 6.8,
+          "vector": "AV:N/AC:M/Au:N/C:P/I:P/A:P"
+        }
+      },
+      "matchDetails": {
+        "matcher": "dpkg-matcher",
+        "searchKey": {
+          "distro": {
+            "type": "debian",
+            "version": "10"
+          }
+        },
+        "matchedOn": {
+          "constraint": "none (deb)"
+        }
+      },
+      "artifact": {
+        "name": "cpp-8",
+        "version": "8.3.0-6",
+        "type": "deb",
+        "foundBy": "dpkgdb-cataloger",
+        "locations": [
+          {
+            "path": "/var/lib/dpkg/status",
+            "layerID": "sha256:fb609ff8695d40c02d31f15d0be567a57d0dbfef0a4fc357687e16476367da41"
+          },
+          {
+            "path": "/var/lib/dpkg/info/cpp-8.md5sums",
+            "layerID": "sha256:da87e334550a964e262ec1400dc5815292dc5158bc866761918da1b905ca788b"
+          }
+        ],
+        "licenses": [],
+        "language": "",
+        "cpes": [
+          "cpe:2.3:a:*:cpp-8:8.3.0-6:*:*:*:*:*:*:*",
+          "cpe:2.3:a:cpp-8:cpp-8:8.3.0-6:*:*:*:*:*:*:*"
+        ],
+        "purl": "pkg:deb/debian/cpp-8@8.3.0-6?arch=amd64",
+        "metadataType": "DpkgMetadata",
+        "metadata": {
+          "package": "cpp-8",
+          "source": "gcc-8",
+          "version": "8.3.0-6",
+          "architecture": "amd64",
+          "maintainer": "Debian GCC Maintainers <debian-gcc@lists.debian.org>",
+          "installedSize": 25571,
+          "files": [
+            {
+              "path": "/usr/bin/x86_64-linux-gnu-cpp-8",
+              "md5": "59917b98160138219bac08dd15345baa"
+            },
+            {
+              "path": "/usr/lib/gcc/x86_64-linux-gnu/8/cc1",
+              "md5": "6966fcacb41a887e33f89f5763b3f316"
+            },
+            {
+              "path": "/usr/share/lintian/overrides/cpp-8",
+              "md5": "8b665aab77b1d32edefea4eb3fcab1cc"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "source": {
+    "type": "image",
+    "target": {
+      "userInput": "docker-grype:latest",
+      "scope": "Squashed",
+      "layers": [
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:f0e10b20de190c7cf4ea7ef410e7229d64facdc5d94514a13aa9b58d36fca647",
+          "size": 114056784
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:193bc1d68b802148745df4e25dbe6b3a0074eb5d32c093b592ce61dccfce1d6e",
+          "size": 16461186
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:ceecb62b2fcc45284109ae87435d4d686410c64855925b184ab6f5e79d2f8f0a",
+          "size": 17535450
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:c5f4367d4a59ee8ef94d2b07f7c524f35e1a07019128e3e2302c24bcc7b52a98",
+          "size": 145535981
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:da87e334550a964e262ec1400dc5815292dc5158bc866761918da1b905ca788b",
+          "size": 509967999
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:59840d625c921d7c25adbe07ffd951db761b6c92f5146516d14f43b12d30754f",
+          "size": 17950418
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:90864f0e5b9fcf99c09f59dac301c90f2e2216c63ec89ba4d71974aff421b16f",
+          "size": 53366288
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:e7f6ccee1295c5504a872549a6d70b91c37ba41d9dec69197fcdadcf655f85ac",
+          "size": 0
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:8bdee3f404a160b4353e320d2436a9a851f8a8bdcc5f6472bbb08daa8db639e9",
+          "size": 9411694
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:fb609ff8695d40c02d31f15d0be567a57d0dbfef0a4fc357687e16476367da41",
+          "size": 454789163
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:a832b56f598cd210cd33dc02e9515833df33d14bb5941988efaca1fd5ba047c8",
+          "size": 26206462
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:9d83f961018e28c2d7728dc37fd6fa87d6c48da2d4d892ef4307de1a9c9a6f18",
+          "size": 308
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:ffa6e98d017ab97bb730348ee7e9bbc53d41450dc93bfb319646756488f41247",
+          "size": 80
+        }
+      ],
+      "size": 1365281813,
+      "digest": "sha256:96ba9085b8f08dac82e13665c7ef8fd34f517f6828566d930b63cd54899bbfef",
+      "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+      "tags": [
+        "docker-grype:latest"
+      ]
+    }
+  },
+  "distro": {
+    "name": "debian",
+    "version": "10",
+    "idLike": ""
+  },
+  "descriptor": {
+    "name": "grype",
+    "version": "0.6.1"
+  }
+}
