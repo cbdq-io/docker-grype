@@ -32,3 +32,6 @@ jobs:
 
       - name: Push
         run: make push
+        with:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
