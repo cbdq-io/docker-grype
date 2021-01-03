@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.0.0
+## 1.0.1
+
+### New
+
+* Enable continuous deployment. [Ben Dalling]
+
+
+## 1.0.0 (2021-01-03)
 
 ### New
 
