@@ -5,6 +5,10 @@
 
 ### New
 
+* Add documentaion on options. [Ben Dalling]
+
+* Create automated change log mechanism. [Ben Dalling]
+
 * Add Docker Compose example. [Ben Dalling]
 
 * Implement CI. [Ben Dalling]
