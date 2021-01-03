@@ -1,25 +1,24 @@
 TAG = 1.0.0
 
 all: lint build test
-	echo $(TAG)
 
 build:
-	docker-compose -f docker-grype/docker-compose.test.yml build grype sut
-	docker build -f docker-grype/Dockerfile -t docker-grype:$(TAG) docker-grype
-	docker-compose -f docker-grype/docker-compose.test.yml build sut
+	docker build -f docker-grype/Dockerfile -t docker-grype:$(TAG) -t docker-grype:latest docker-grype
 
 clean:
-	docker-compose -f docker-grype/docker-compose.test.yml down -t 0
+	docker-compose -f tests/resources/docker-compose.yml down -t 0
 
-cleanall:
+cleanall: clean
 	docker system prune --force --volumes
 
 lint:
+	flake8 docker-grype/parse-grype-json.py
+	pycodestyle -v tests
 	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
 
-ps:
-	docker-compose -f docker-grype/docker-compose.test.yml ps
-
 test:
-	docker-compose -f tests/resources/docker-compose.yml up -d
+	docker-compose -f tests/resources/docker-compose.yml up -d docker grype
 	pytest -o cache_dir=/tmp/.pycache -v tests
+	docker-compose -f tests/resources/docker-compose.yml exec docker \
+	    docker build -t docker-grype:latest ./docker-grype
+	docker-compose -f tests/resources/docker-compose.yml run -e 'LOG_LEVEL=DEBUG' -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2018-20225,CVE-2020-29363' sut

@@ -5,4 +5,10 @@ if [ -z "$IMAGE_NAME" ]; then
   exit 2
 fi
 
-/usr/local/bin/grype $IMAGE_NAME
+if [ -z "$TOLERATE" ]; then
+  export TOLERATE='medium'
+fi
+
+echo "INFO: Vulnerability toleration: $TOLERATE"
+
+/usr/local/bin/grype $IMAGE_NAME -o json -v | /usr/local/bin/parse-grype-json.py
