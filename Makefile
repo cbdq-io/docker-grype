@@ -19,6 +19,6 @@ lint:
 test:
 	docker-compose -f tests/resources/docker-compose.yml up -d docker grype
 	pytest -o cache_dir=/tmp/.pycache -v tests
-	docker-compose -f tests/resources/docker-compose.yml exec docker \
+	docker-compose -f tests/resources/docker-compose.yml exec -T docker \
 	    docker build -t docker-grype:latest ./docker-grype
 	docker-compose -f tests/resources/docker-compose.yml run -e 'LOG_LEVEL=DEBUG' -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2018-20225,CVE-2020-29363' sut
