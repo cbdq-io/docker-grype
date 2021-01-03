@@ -3,7 +3,7 @@ TAG = 1.0.0
 all: lint build test
 
 build:
-	docker build -f docker-grype/Dockerfile -t docker-grype:$(TAG) -t docker-grype:latest docker-grype
+	docker build -f docker-grype/Dockerfile -t cbdq/docker-grype:$(TAG) -t cbdq/docker-grype:latest -t docker-grype:$(TAG) -t docker-grype:latest docker-grype
 
 changelog:
 	UNRELEASED_VERSION_LABEL=$(TAG) gitchangelog > CHANGELOG.md
@@ -17,7 +17,12 @@ cleanall: clean
 lint:
 	flake8 docker-grype/parse-grype-json.py
 	pycodestyle -v tests
-	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
+	docker run --rm -i hadolint/hadolint < doc ker-grype/Dockerfile
+
+push:
+	echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+	docker push cbdq/docker-grype:$(TAG)
+	docker push cbdq/docker-grype:latest
 
 test:
 	docker-compose -f tests/resources/docker-compose.yml up -d docker grype

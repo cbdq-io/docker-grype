@@ -21,7 +21,7 @@ services:
       DOCKER_HOST: tcp://docker:2375
       DOCKER_TLS_CERTDIR: ""
       IMAGE_NAME: hello-world:latest
-    image: docker-grype:latest
+    image: cbdq/docker-grype:latest
 
 volumes:
   certs:
