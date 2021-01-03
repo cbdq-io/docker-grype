@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.0.1
+## 1.0.3
+
+### Fix
+
+* Allow CI build to be skipped. [Ben Dalling]
+
+* Resolve bad link issue. [Ben Dalling]
+
+* Migrate from GitFlow to GitHub Flow. [Ben Dalling]
+
+
+## 1.0.1 (2021-01-03)
 
 ### New
 
