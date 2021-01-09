@@ -5,7 +5,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
 # hadolint ignore=DL3008
-RUN apt-get update \
+RUN apt-get clean \
+    && apt-get update \
     && apt-get install -y --no-install-recommends \
        apt-transport-https \
        ca-certificates \
