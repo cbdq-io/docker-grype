@@ -15,6 +15,7 @@ cleanall: clean
 	docker system prune --force --volumes
 
 lint:
+	yamllint -s .
 	flake8 docker-grype/parse-grype-json.py
 	pycodestyle -v tests
 	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
