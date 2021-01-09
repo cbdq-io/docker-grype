@@ -1,7 +1,17 @@
 #!/bin/sh
 
+set -e
+
 if [ -z "$IMAGE_NAME" ]; then
   echo 'ERROR: The IMAGE_NAME environment variable is not set.'
+  exit 2
+fi
+
+if [ ! -z "${DOCKER_USERNAME}" -a -z "${DOCKER_PASSWORD}" ]; then
+  echo "ERROR: You must provide DOCKER_USERNAME and DOCKER_PASSWORD together."
+  exit 2
+elif [ -z "${DOCKER_USERNAME}" -a ! -z "${DOCKER_PASSWORD}" ]; then
+  echo "ERROR: You must provide DOCKER_USERNAME and DOCKER_PASSWORD together."
   exit 2
 fi
 
@@ -30,5 +40,12 @@ while [ $docker_available -ne 1 ]; do
     docker_available=1
   fi
 done
+
+if [ ! -z "${DOCKER_USERNAME}" ]; then
+  echo "INFO: Logging into Docker with provided credentials"
+  echo "${DOCKER_PASSWORD}" | docker login --password-stdin \
+                                --username "${DOCKER_USERNAME}" \
+                                "${DOCKER_SERVER}"
+fi
 
 /usr/local/bin/grype $IMAGE_NAME -o json -v | /usr/local/bin/parse-grype-json.py

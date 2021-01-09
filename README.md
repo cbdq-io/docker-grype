@@ -4,6 +4,15 @@ Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker
 
 ## Environment Variables
 
+- `DOCKER_PASSWORD` (_optional_): If used with `DOCKER_USERNAME` (and
+  optionally with `DOCKER_SERVER`) will login to Docker to transfer the image
+  for scanning.
+- `DOCKER_SERVER` (_optional_): Can be used with `DOCKER_USERNAME` and
+  `DOCKER_PASSWORD` to specify a server to login to before transferring the
+  image for scanning.
+- `DOCKER_USERNAME` (_optional_): If used with `DOCKER_PASSWORD` (and
+  optionally with `DOCKER_SERVER`) will login to Docker to transfer the image
+  for scanning.
 - `IMAGE_NAME` (_required_):  The name of the image to be scanned.
 - `LOG_LEVEL` (default is `INFO`):  The log level for how much output to be provided.  Can be set to
   DEBUG, INFO, WARNING, ERROR or CRITICAL.
@@ -17,7 +26,7 @@ Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker
 
 ### Docker Compose
 
-Tested on Ubuntu.  This snippet contains
+Tested on Ubuntu and Mac OS (Big Sur).  This snippet contains
 an example configuration that will test the `hello-world:latest` image.
 
 ```YAML
@@ -42,7 +51,9 @@ services:
       - docker
     environment:
       DOCKER_HOST: tcp://docker:2375
+      DOCKER_PASSWORD: "${DOCKER_PASSWORD- }"
       DOCKER_TLS_CERTDIR: ""
+      DOCKER_USERNAME: "${DOCKER_USERNAME- }"
       IMAGE_NAME: hello-world:latest
     image: cbdq/docker-grype:latest
 

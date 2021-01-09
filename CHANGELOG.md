@@ -1,7 +1,16 @@
 # Changelog
 
 
-## 1.0.3
+## 1.1.0
+
+### New
+
+* All the user to login to Docker. [Ben Dalling]
+
+* YAML Lint Check. [Ben Dalling]
+
+
+## 1.0.3 (2021-01-03)
 
 ### Fix
 

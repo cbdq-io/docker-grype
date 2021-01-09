@@ -26,6 +26,7 @@ packaging==20.8
 paramiko==2.7.2
 parse==1.18.0
 parse-type==0.5.2
+pathspec==0.8.1
 pluggy==0.13.1
 py==1.10.0
 pycodestyle==2.6.0
@@ -50,4 +51,5 @@ toml==0.10.2
 typing-extensions==3.7.4.3
 urllib3==1.26.2
 websocket-client==0.57.0
+yamllint==1.25.0
 zipp==3.4.0
