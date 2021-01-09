@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.1.0
+## 1.1.1
+
+### Fix
+
+* Correct the example Docker Compose. [Ben Dalling]
+
+
+## 1.1.0 (2021-01-09)
 
 ### New
 
