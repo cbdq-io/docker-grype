@@ -51,9 +51,9 @@ services:
       - docker
     environment:
       DOCKER_HOST: tcp://docker:2375
-      DOCKER_PASSWORD: "${DOCKER_PASSWORD- }"
+      DOCKER_PASSWORD: "${DOCKER_PASSWORD-}"
       DOCKER_TLS_CERTDIR: ""
-      DOCKER_USERNAME: "${DOCKER_USERNAME- }"
+      DOCKER_USERNAME: "${DOCKER_USERNAME-}"
       IMAGE_NAME: hello-world:latest
     image: cbdq/docker-grype:latest
 
