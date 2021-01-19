@@ -38,7 +38,8 @@ def test_file_is_set():
 @when('CVE-2018-12886 in the allowed list')
 def cve201812886_in_the_allowed_list(feature_data):
     """CVE-2018-12886 in the allowed list."""
-    os.environ['VULNERABILITIES_ALLOWED_LIST'] = 'CVE-2018-12886'
+    allowed_list = ['CVE-2018-12886', 'CVE-2019-25013']
+    os.environ['VULNERABILITIES_ALLOWED_LIST'] = ','.join(allowed_list)
     host = testinfra.get_host(feature_data['host_url'])
     cmd = host.run(feature_data['command'])
     feature_data['stdout'] = cmd.stdout

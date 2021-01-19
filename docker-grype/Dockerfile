@@ -7,6 +7,7 @@ ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 # hadolint ignore=DL3008
 RUN apt-get clean \
     && apt-get update \
+    && apt-get -y dist-upgrade \
     && apt-get install -y --no-install-recommends \
        apt-transport-https \
        ca-certificates \
@@ -23,20 +24,19 @@ RUN apt-get clean \
     && apt-get install -y --no-install-recommends \
        docker-ce docker-ce-cli containerd.io \
     && apt-get purge -y \
-       python2.7-minimal \
-       linux-libc-dev \
-       linux-libc-dev \
-       linux-libc-dev \
-       linux-libc-dev \
-       linux-libc-dev \
-       python2.7 \
-       libpython2.7-stdlib \
-       libbluetooth-dev \
-       libpq-dev \
        libbluetooth3 \
-       libpython2.7-minimal \
+       libbluetooth-dev \
+       libc-dev-bin \
+       libopenjp2-7 \
        libp11-kit-dev \
        libpq5 \
+       libpq-dev \
+       libpython2.7-minimal \
+       libpython2.7-stdlib \
+       linux-libc-dev \
+       python2.7 \
+       python2.7-minimal \
+    && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
