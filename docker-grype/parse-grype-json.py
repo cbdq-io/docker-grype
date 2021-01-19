@@ -88,6 +88,7 @@ class ParseGrypeJSON():
             raise ValueError(error_message)
 
         vulnerabilities = Vulnerabilities()
+        unused_allowed_vulnerabilities = self.vulnerabilities_allowed_list()
         filename = self.filename()
 
         if filename:
@@ -115,7 +116,8 @@ class ParseGrypeJSON():
             if level <= self.tolerance_level():
                 pass
             elif vulnerability_id in self.vulnerabilities_allowed_list():
-                pass
+                if vulnerability_id in unused_allowed_vulnerabilities:
+                    unused_allowed_vulnerabilities.remove(vulnerability_id)
             else:
                 self.max_severity_level(level)
                 vulnerabilities.add(
@@ -126,6 +128,13 @@ class ParseGrypeJSON():
                 )
 
         print(vulnerabilities)
+
+        if len(unused_allowed_vulnerabilities):
+            for vulnerability_id in unused_allowed_vulnerabilities:
+                msg = f'"{vulnerability_id}" is in the allowed list '
+                msg += 'but not found in the scan!'
+                logging.warning(msg)
+
         logging.debug(
             f'Max severity level found was {self.max_severity_level()}.')
 
