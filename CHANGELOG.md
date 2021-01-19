@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.1.1
+## 1.1.2
+
+### New
+
+* Added CVE-2019-25013 to the allowed list. [Ben Dalling]
+
+### Fix
+
+* Resolve CVE-2020-27843 & CVE-2020-27844. [Ben Dalling]
+
+
+## 1.1.1 (2021-01-09)
 
 ### Fix
 
