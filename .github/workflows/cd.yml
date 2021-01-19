@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Push
-        run: make push
+        run: make build test push
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
