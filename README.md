@@ -20,7 +20,9 @@ Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker
   return code.  Valid values (in increasing order of severity) are `Unknown`, `Negligible`, `Low`,
   `Medium`, `High` or `Critical`.
 - `VULNERABILITIES_ALLOWED_LIST` (optional): A comma separated list of vulnerabilities that are not to count against
-  a failure (e.g. `CVE-2018-20225,CVE-2020-29363`).
+  a failure (e.g. `CVE-2018-20225,CVE-2020-29363`).  If a vulnerability is
+  specified in this variable, but not found in the scan, a warning will
+  be displayed.
 
 ## Examples
 

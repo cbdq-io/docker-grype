@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.1.2
+## 1.2.0
+
+### New
+
+* Warn if an entry in allowed list is not found in the scan. [Ben Dalling]
+
+
+## 1.1.2 (2021-01-19)
 
 ### New
 
