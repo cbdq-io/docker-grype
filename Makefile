@@ -1,4 +1,4 @@
-TAG = 1.2.0
+TAG = 1.3.0
 
 all: lint build test
 
@@ -7,8 +7,8 @@ build:
 
 bump_version:
 	UNRELEASED_VERSION_LABEL=$(TAG) gitchangelog > CHANGELOG.md
-	git add CHANGELOG.md
-	git -m "chg: doc: Release $(TAG), !minor"
+	git add .
+	git commit -m "chg: doc: Release $(TAG), !minor"
 	git tag -a -m"v$(TAG)" $(TAG)
 
 clean:

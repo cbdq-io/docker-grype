@@ -1,7 +1,32 @@
 # Changelog
 
 
-## 1.2.0
+## 1.3.0
+
+### New
+
+* Add the SHOW_ALL_VULNERABILITIES option. [Ben Dalling]
+
+### Changes
+
+* Documentation updates. [Ben Dalling]
+
+* Update the Grype version from 0.6.1 to 0.7.0. [Ben Dalling]
+
+### Fix
+
+* Remove tests link section as this is handled in GitHub well enough. [Ben Dalling]
+
+* Avoid DL3005 in hadolint. [Ben Dalling]
+
+### Other
+
+* Update issue templates. [Ben Dalling]
+
+* Create CODE_OF_CONDUCT.md. [Ben Dalling]
+
+
+## 1.2.0 (2021-01-19)
 
 ### New
 
