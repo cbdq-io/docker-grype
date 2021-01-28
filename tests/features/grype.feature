@@ -7,4 +7,4 @@ Feature: Grype
 
     Examples:
     | expected_version |
-    | 0.6.1            |
+    | 0.7.0            |
