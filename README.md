@@ -14,15 +14,19 @@ Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker
   optionally with `DOCKER_SERVER`) will login to Docker to transfer the image
   for scanning.
 - `IMAGE_NAME` (_required_):  The name of the image to be scanned.
-- `LOG_LEVEL` (default is `INFO`):  The log level for how much output to be provided.  Can be set to
-  DEBUG, INFO, WARNING, ERROR or CRITICAL.
-- `TOLERATE` (default is `Medium`): The level of severity to tolerate before giving a non-zero
-  return code.  Valid values (in increasing order of severity) are `Unknown`, `Negligible`, `Low`,
-  `Medium`, `High` or `Critical`.
-- `VULNERABILITIES_ALLOWED_LIST` (optional): A comma separated list of vulnerabilities that are not to count against
-  a failure (e.g. `CVE-2018-20225,CVE-2020-29363`).  If a vulnerability is
-  specified in this variable, but not found in the scan, a warning will
-  be displayed.
+- `LOG_LEVEL` (default is `INFO`):  The log level for how much output to be
+  provided.  Can be set to DEBUG, INFO, WARNING, ERROR or CRITICAL.
+- `SHOW_ALL_VULNERABILITIES` (_optional_): Show all vulnerabilities (excluding
+  Unknown or Negligible) that are found by the Grype scan.  If this option is
+  provided then an additional column in the report called "allowed" indicating
+  if the vulnerability has been included in the `VULNERABILITIES_ALLOWED_LIST`.
+- `TOLERATE` (default is `Medium`): The level of severity to tolerate before
+  giving a non-zero return code.  Valid values (in increasing order of
+  severity) are `Unknown`, `Negligible`, `Low`, `Medium`, `High` or `Critical`.
+- `VULNERABILITIES_ALLOWED_LIST` (optional): A comma separated list of
+  vulnerabilities that are not to count against a failure (e.g.
+  `CVE-2018-20225,CVE-2020-29363`).  If a vulnerability is specified in this
+  variable, but not found in the scan, a warning will be displayed.
 
 ## Examples
 

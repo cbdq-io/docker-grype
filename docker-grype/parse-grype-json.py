@@ -27,6 +27,10 @@ class ParseGrypeJSON():
 
         self._max_severity_level = 0
         self._filename = None
+        self._show_all = False
+
+        if 'SHOW_ALL_VULNERABILITIES' in os.environ:
+            self.show_all(True)
 
     def filename(self, filename=None):
         """
@@ -87,7 +91,7 @@ class ParseGrypeJSON():
             error_message += f'({",".join(valid_tolerance_names)})'
             raise ValueError(error_message)
 
-        vulnerabilities = Vulnerabilities()
+        vulnerabilities = Vulnerabilities(self.show_all())
         unused_allowed_vulnerabilities = self.vulnerabilities_allowed_list()
         filename = self.filename()
 
@@ -113,18 +117,34 @@ class ParseGrypeJSON():
             vulnerability_severity = vulnerability['severity']
             level = self.tolerance_name2level(vulnerability_severity)
 
-            if level <= self.tolerance_level():
-                pass
-            elif vulnerability_id in self.vulnerabilities_allowed_list():
-                if vulnerability_id in unused_allowed_vulnerabilities:
-                    unused_allowed_vulnerabilities.remove(vulnerability_id)
+            if vulnerability_id in unused_allowed_vulnerabilities:
+                unused_allowed_vulnerabilities.remove(vulnerability_id)
+
+            if vulnerability_id in self.vulnerabilities_allowed_list():
+                allowed = True
             else:
-                self.max_severity_level(level)
+                allowed = False
+
+            if level <= self.tolerance_level() and not self.show_all():
+                add_vulnerability = False
+            elif level <= self.tolerance_level() and self.show_all():
+                add_vulnerability = True
+            elif level > self.tolerance_level():
+                if not allowed:
+                    add_vulnerability = True
+                    self.max_severity_level(level)
+                elif allowed and self.show_all():
+                    add_vulnerability = True
+                else:
+                    add_vulnerability = False
+
+            if add_vulnerability:
                 vulnerabilities.add(
                     vulnerability_name,
                     vulnerability_installed,
                     vulnerability_id,
-                    vulnerability_severity
+                    vulnerability_severity,
+                    allowed
                 )
 
         print(vulnerabilities)
@@ -142,6 +162,24 @@ class ParseGrypeJSON():
             return 0
         else:
             return self.max_severity_level()
+
+    def show_all(self, show_all=None):
+        """
+        Get or set if we are to show all.
+
+        Parameters
+        ----------
+        show_all : bool, optional
+            Should all vulnerabilities be shown.
+
+        Returns
+        -------
+        bool
+            Should all vulnerabilities be shown.
+        """
+        if show_all is not None:
+            self._show_all = show_all
+        return self._show_all
 
     def tolerance_level(self, tolerance_level=None):
         """
@@ -229,9 +267,17 @@ class ParseGrypeJSON():
 class Vulnerabilities:
     """Collate and report on vulnerabilities."""
 
-    def __init__(self):
-        """Create a Vulnerabilities class."""
+    def __init__(self, show_all):
+        """
+        Create a Vulnerabilities class.
+
+        Parameters
+        ----------
+        show_all : bool
+            Are all vulnerabilities (not just failing ones) be shown.
+        """
         self._vulnerabilities = []
+        self._show_all = show_all
 
     def __str__(self):
         """
@@ -242,7 +288,10 @@ class Vulnerabilities:
         str
             A CSV string (with header).
         """
-        response = 'NAME,INSTALLED,VULNERABILITY,SEVERITY\n'
+        if self._show_all:
+            response = 'NAME,INSTALLED,VULNERABILITY,SEVERITY,ALLOWED\n'
+        else:
+            response = 'NAME,INSTALLED,VULNERABILITY,SEVERITY\n'
 
         for row in self._vulnerabilities:
             response += ','.join(row)
@@ -250,7 +299,7 @@ class Vulnerabilities:
 
         return response
 
-    def add(self, name, installed, vulnerability, severity):
+    def add(self, name, installed, vulnerability, severity, allowed):
         """
         Add a vulnerability to the list.
 
@@ -264,12 +313,20 @@ class Vulnerabilities:
             The ID of the vulnerability (e.g. CVE-2011-3374).
         severity : str
             The severity of the vulnerability.
+        allowed : bool
+            Is the vulnerability in the allowed list.
         """
+        if allowed:
+            allowed = 'yes'
+        else:
+            allowed = 'no'
+
         self._vulnerabilities.append([
             name,
             installed,
             vulnerability,
-            severity])
+            severity,
+            allowed])
 
 
 def main():

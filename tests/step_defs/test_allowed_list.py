@@ -16,6 +16,8 @@ def test_no_allowed_list():
     exception_message = 'VULNERABILITIES_ALLOWED_LIST is set in environment'
     assert 'VULNERABILITIES_ALLOWED_LIST' not in os.environ,\
         exception_message
+    exception_message = 'SHOW_ALL_VULNERABILITIES is set in environment'
+    assert 'SHOW_ALL_VULNERABILITIES' not in os.environ, exception_message
 
 
 @scenario('../features/allowed_list.feature', 'With allowed list')
