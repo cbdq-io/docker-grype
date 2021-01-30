@@ -8,10 +8,6 @@ services:
       DOCKER_TLS_CERTDIR: ""
     image: docker:18-dind
     privileged: yes
-    volumes:
-      - certs:/certs/client
-      - ../..:/work
-    working_dir: /work
 
   grype:
     container_name: grype
@@ -24,6 +20,3 @@ services:
       DOCKER_USERNAME: "${DOCKER_USERNAME-}"
       IMAGE_NAME: hello-world:latest
     image: cbdq/docker-grype:latest
-
-volumes:
-  certs:
