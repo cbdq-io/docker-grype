@@ -1,12 +1,15 @@
-TAG = 1.2.0
+TAG = 1.3.0
 
 all: lint build test
 
 build:
 	docker build -f docker-grype/Dockerfile --no-cache -t cbdq/docker-grype:$(TAG) -t cbdq/docker-grype:latest -t docker-grype:$(TAG) -t docker-grype:latest docker-grype
 
-changelog:
+bump_version:
 	UNRELEASED_VERSION_LABEL=$(TAG) gitchangelog > CHANGELOG.md
+	git add .
+	git commit -m "chg: doc: Release $(TAG), !minor"
+	git tag -a -m"v$(TAG)" $(TAG)
 
 clean:
 	docker-compose -f tests/resources/docker-compose.yml down -t 0
@@ -24,9 +27,6 @@ push:
 	echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
 	docker push cbdq/docker-grype:$(TAG)
 	docker push cbdq/docker-grype:latest
-
-tag:
-	git tag -a -m"v$(TAG)" $(TAG)
 
 test:
 	docker-compose -f tests/resources/docker-compose.yml up -d docker grype
