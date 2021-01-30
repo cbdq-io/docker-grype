@@ -33,4 +33,6 @@ test:
 	pytest -o cache_dir=/tmp/.pycache -v tests
 	docker-compose -f tests/resources/docker-compose.yml exec -T docker \
 	    docker build -t docker-grype:latest ./docker-grype
-	docker-compose -f tests/resources/docker-compose.yml run -e 'LOG_LEVEL=DEBUG' -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2018-20225,CVE-2019-25013,CVE-2020-29363' sut
+	docker-compose -f tests/resources/docker-compose.yml \
+	  run -e 'LOG_LEVEL=DEBUG' \
+              -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2018-20225,CVE-2019-25013,CVE-2021-3177' sut
