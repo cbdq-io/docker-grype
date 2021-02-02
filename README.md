@@ -46,10 +46,6 @@ services:
       DOCKER_TLS_CERTDIR: ""
     image: docker:18-dind
     privileged: yes
-    volumes:
-      - certs:/certs/client
-      - ../..:/work
-    working_dir: /work
 
   grype:
     container_name: grype
@@ -58,13 +54,16 @@ services:
     environment:
       DOCKER_HOST: tcp://docker:2375
       DOCKER_PASSWORD: "${DOCKER_PASSWORD-}"
-      DOCKER_TLS_CERTDIR: ""
       DOCKER_USERNAME: "${DOCKER_USERNAME-}"
       IMAGE_NAME: hello-world:latest
     image: cbdq/docker-grype:latest
+    volumes:
+      # This will persist the Grype DB so that it will
+      # not need to be downloaded for each invocation.
+      - grype_db:/root/.cache/grype
 
 volumes:
-  certs:
+  grype_db:
 ```
 
 This could be used by running the command (in the same directory as the

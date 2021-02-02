@@ -1,7 +1,22 @@
 # Changelog
 
 
-## 1.3.0
+## 1.3.1
+
+### New
+
+* Document persisting the Grype DB. [Ben Dalling]
+
+### Changes
+
+* Docker Compose example testing on MacOS. [Ben Dalling]
+
+### Fix
+
+* Remove CVE-2020-29363 and add CVE-2021-3177 to the allowed list. [Ben Dalling]
+
+
+## 1.3.0 (2021-01-28)
 
 ### New
 
