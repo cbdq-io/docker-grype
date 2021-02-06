@@ -72,3 +72,36 @@ This could be used by running the command (in the same directory as the
 ```shell
 docker-compose run grype
 ```
+
+### Drone CI (Kubernetes Pipeline)
+
+With a service defines like this:
+
+```YAML
+services:
+  - name: docker
+    image: docker:dind
+    volumes:
+      - name: dockersock
+        path: /var/run
+
+volumes:
+  - name: dockersock
+    temp: {}
+```
+
+Then run the scan with this step:
+
+```
+steps:
+  - name: Anchore Grype
+    commands:
+      - /usr/local/bin/docker-grype-cmd.sh
+    environment:
+      IMAGE_NAME: my-image:latest
+    image: cbdq/docker-grype:latest
+    pull: if-not-exists
+    volumes:
+      - name: dockersock
+        path: /var/run
+```

@@ -70,6 +70,77 @@
           ]
         }
       }
+    },
+    {
+      "vulnerability": {
+        "id": "CVE-2018-12886",
+        "severity": "Critical",
+        "links": [
+          "https://security-tracker.debian.org/tracker/CVE-2018-12886"
+        ],
+        "cvssV2": {
+          "baseScore": 6.8,
+          "vector": "AV:N/AC:M/Au:N/C:P/I:P/A:P"
+        }
+      },
+      "matchDetails": {
+        "matcher": "dpkg-matcher",
+        "searchKey": {
+          "distro": {
+            "type": "debian",
+            "version": "10"
+          }
+        },
+        "matchedOn": {
+          "constraint": "none (deb)"
+        }
+      },
+      "artifact": {
+        "name": "cpp-8",
+        "version": "8.3.0-6",
+        "type": "deb",
+        "foundBy": "dpkgdb-cataloger",
+        "locations": [
+          {
+            "path": "/var/lib/dpkg/status",
+            "layerID": "sha256:fb609ff8695d40c02d31f15d0be567a57d0dbfef0a4fc357687e16476367da41"
+          },
+          {
+            "path": "/var/lib/dpkg/info/cpp-8.md5sums",
+            "layerID": "sha256:da87e334550a964e262ec1400dc5815292dc5158bc866761918da1b905ca788b"
+          }
+        ],
+        "licenses": [],
+        "language": "",
+        "cpes": [
+          "cpe:2.3:a:*:cpp-8:8.3.0-6:*:*:*:*:*:*:*",
+          "cpe:2.3:a:cpp-8:cpp-8:8.3.0-6:*:*:*:*:*:*:*"
+        ],
+        "purl": "pkg:deb/debian/cpp-8@8.3.0-6?arch=amd64",
+        "metadataType": "DpkgMetadata",
+        "metadata": {
+          "package": "cpp-8",
+          "source": "gcc-8",
+          "version": "8.3.0-6",
+          "architecture": "amd64",
+          "maintainer": "Debian GCC Maintainers <debian-gcc@lists.debian.org>",
+          "installedSize": 25571,
+          "files": [
+            {
+              "path": "/usr/bin/x86_64-linux-gnu-cpp-8",
+              "md5": "59917b98160138219bac08dd15345baa"
+            },
+            {
+              "path": "/usr/lib/gcc/x86_64-linux-gnu/8/cc1",
+              "md5": "6966fcacb41a887e33f89f5763b3f316"
+            },
+            {
+              "path": "/usr/share/lintian/overrides/cpp-8",
+              "md5": "8b665aab77b1d32edefea4eb3fcab1cc"
+            }
+          ]
+        }
+      }
     }
   ],
   "source": {

@@ -321,6 +321,10 @@ class Vulnerabilities:
         else:
             allowed = 'no'
 
+        for v in self._vulnerabilities:
+            if v[2] == vulnerability:
+                return
+
         self._vulnerabilities.append([
             name,
             installed,
