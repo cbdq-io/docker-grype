@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.3.1
+## 1.3.2
+
+### New
+
+* Add Drone CI (Kubernetes pipeline) example. [Ben Dalling]
+
+### Fix
+
+* Stop dublicate vulnerabilitity reports. [Ben Dalling]
+
+
+## 1.3.1 (2021-01-30)
 
 ### New
 
