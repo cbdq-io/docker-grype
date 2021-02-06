@@ -92,3 +92,9 @@ def expect_cve201812886_in_stdout(feature_data):
 def expect_no_issues_in_stdout(feature_data):
     """expect no issues in stdout."""
     assert 'CVE' not in feature_data['stdout']
+
+
+@then('report occurrence is one')
+def report_occurrence_is_one(feature_data):
+    """report occurrence is one."""
+    assert feature_data['stdout'].count('CVE-2018-12886') == 1

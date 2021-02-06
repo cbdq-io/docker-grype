@@ -5,6 +5,7 @@ Feature: Allowed List
   Scenario: No Allowed List
     When no allowed list provided
     Then expect CVE-2018-12886 in stdout
+    And report occurrence is one
 
   Scenario: With allowed list
     When CVE-2018-12886 in the allowed list
