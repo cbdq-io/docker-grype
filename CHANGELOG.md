@@ -1,7 +1,19 @@
 # Changelog
 
 
-## 1.3.2
+## 1.3.3
+
+### Other
+
+* Build(deps): bump cryptography from 3.3.1 to 3.3.2. [dependabot[bot]]
+
+  Bumps [cryptography](https://github.com/pyca/cryptography) from 3.3.1 to 3.3.2.
+  - [Release notes](https://github.com/pyca/cryptography/releases)
+  - [Changelog](https://github.com/pyca/cryptography/blob/master/CHANGELOG.rst)
+  - [Commits](https://github.com/pyca/cryptography/compare/3.3.1...3.3.2)
+
+
+## 1.3.2 (2021-02-06)
 
 ### New
 
