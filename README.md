@@ -92,7 +92,7 @@ volumes:
 
 Then run the scan with this step:
 
-```
+```YAML
 steps:
   - name: Anchore Grype
     commands:
