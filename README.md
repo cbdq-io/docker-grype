@@ -81,13 +81,6 @@ With a service defines like this:
 services:
   - name: docker
     image: docker:dind
-    volumes:
-      - name: dockersock
-        path: /var/run
-
-volumes:
-  - name: dockersock
-    temp: {}
 ```
 
 Then run the scan with this step:
@@ -98,10 +91,8 @@ steps:
     commands:
       - /usr/local/bin/docker-grype-cmd.sh
     environment:
+      DOCKER_HOST: tcp://docker:2375
       IMAGE_NAME: my-image:latest
     image: cbdq/docker-grype:latest
     pull: if-not-exists
-    volumes:
-      - name: dockersock
-        path: /var/run
 ```
