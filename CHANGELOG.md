@@ -3,6 +3,10 @@
 
 ## 1.3.3
 
+### Fix
+
+* Correct example code highlighting. [Ben Dalling]
+
 ### Other
 
 * Build(deps): bump cryptography from 3.3.1 to 3.3.2. [dependabot[bot]]
