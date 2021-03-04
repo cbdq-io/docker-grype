@@ -294,6 +294,9 @@ class Vulnerabilities:
             response = 'NAME,INSTALLED,VULNERABILITY,SEVERITY\n'
 
         for row in self._vulnerabilities:
+            if not self._show_all:
+                row = row[:-1]
+
             response += ','.join(row)
             response += '\n'
 
