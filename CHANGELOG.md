@@ -11,6 +11,10 @@
 
 ### Fix
 
+* CVE-2018-20225 no longer an issue. [Ben Dalling]
+
+* Purge config durng autoremove. [Ben Dalling]
+
 * Correct the number of columns in the vulnerability report. [Ben Dalling]
 
 * Correct example code highlighting. [Ben Dalling]
