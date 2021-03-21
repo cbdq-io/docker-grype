@@ -35,7 +35,7 @@ RUN apt-get clean \
        linux-libc-dev \
        python2.7 \
        python2.7-minimal \
-    && apt-get -y autoremove \
+    && apt-get -y autoremove --purge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
