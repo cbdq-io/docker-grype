@@ -5,20 +5,24 @@
 
 ### Changes
 
+* Bump Grype version from 0.7.0 to 0.8.0. [Ben Dalling]
+
 * Update Drone CI example. [Ben Dalling]
 
 ### Fix
 
 * Correct the number of columns in the vulnerability report. [Ben Dalling]
 
-
-## 1.3.3 (2021-03-04)
-
-### Fix
-
 * Correct example code highlighting. [Ben Dalling]
 
 ### Other
+
+* Build(deps): bump urllib3 from 1.26.2 to 1.26.3. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 1.26.2 to 1.26.3.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/1.26.2...1.26.3)
 
 * Build(deps): bump cryptography from 3.3.1 to 3.3.2. [dependabot[bot]]
 
