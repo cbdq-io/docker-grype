@@ -1,7 +1,22 @@
 # Changelog
 
 
-## 1.3.3
+## 1.3.4
+
+### Changes
+
+* Update Drone CI example. [Ben Dalling]
+
+### Fix
+
+* Correct the number of columns in the vulnerability report. [Ben Dalling]
+
+
+## 1.3.3 (2021-03-04)
+
+### Fix
+
+* Correct example code highlighting. [Ben Dalling]
 
 ### Other
 

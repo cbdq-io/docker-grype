@@ -44,6 +44,25 @@ def the_allowed_list_is_allowed_list(feature_data, allowed_list):
     os.environ['VULNERABILITIES_ALLOWED_LIST'] = allowed_list.strip()
 
 
+@then('column count matches <column_count>')
+def column_count_matches_column_count(feature_data, column_count):
+    """column count matches <column_count>."""
+    expected_column_count = int(column_count)
+    lines = []
+
+    for line in feature_data['stdout'].split('\n'):
+        line = line.strip()
+
+        if line != '':
+            lines.append(line)
+
+    for line in lines:
+        actual_column_count = len(line.split(','))
+        message = f'Expected {expected_column_count} columns in '
+        message += f'"{line}" but found {actual_column_count}.'
+    assert actual_column_count == expected_column_count, message
+
+
 @then('status is <status>')
 def status_is_status(feature_data, status):
     """status is <status>."""
