@@ -1,7 +1,36 @@
 # Changelog
 
 
-## 1.4.1
+## 1.5.0
+
+### Changes
+
+* Grype updated from 0.8.0 to 0.9.0. [Ben Dalling]
+
+### Fix
+
+* CVE-2021-3177 no longer being idendified as a vulnerability. [Ben Dalling]
+
+* Sort out the template for pull requests. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump urllib3 from 1.26.3 to 1.26.4. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 1.26.3 to 1.26.4.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/1.26.3...1.26.4)
+
+* Build(deps): bump pyyaml from 5.3.1 to 5.4. [dependabot[bot]]
+
+  Bumps [pyyaml](https://github.com/yaml/pyyaml) from 5.3.1 to 5.4.
+  - [Release notes](https://github.com/yaml/pyyaml/releases)
+  - [Changelog](https://github.com/yaml/pyyaml/blob/master/CHANGES)
+  - [Commits](https://github.com/yaml/pyyaml/compare/5.3.1...5.4)
+
+
+## 1.4.1 (2021-03-23)
 
 ### Changes
 
