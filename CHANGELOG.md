@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.5.0
+## 1.5.1
+
+### Changes
+
+* Add CVE-2021-20305 to the accepted risks. [Ben Dalling]
+
+
+## 1.5.0 (2021-04-12)
 
 ### Changes
 
@@ -36,11 +43,18 @@
 
 * Bump base image from Python 3.8 to 3.9.2. [Ben Dalling]
 
-* Bump Grype version from 0.7.0 to 0.8.0. [Ben Dalling]
-
 ### Fix
 
 * Add CVE-2021-20231 and CVE-2021-20232 to the whitelist. [Ben Dalling]
+
+
+## 1.4.0 (2021-03-21)
+
+### Changes
+
+* Bump Grype version from 0.7.0 to 0.8.0. [Ben Dalling]
+
+### Fix
 
 * CVE-2018-20225 no longer an issue. [Ben Dalling]
 
