@@ -37,9 +37,8 @@ RUN apt-get clean \
        python2.7-minimal \
     && apt-get -y autoremove --purge \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN wget -qO - https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+    && rm -rf /var/lib/apt/lists/* \
+    && wget -qO - https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
 
 COPY docker-grype-cmd.sh /usr/local/bin/docker-grype-cmd.sh
 COPY parse-grype-json.py /usr/local/bin/parse-grype-json.py
