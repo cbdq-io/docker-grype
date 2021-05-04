@@ -1,4 +1,4 @@
-TAG = 1.5.1
+TAG = 1.5.2
 
 all: lint build test
 

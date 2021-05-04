@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.5.1
+## 1.5.2
+
+### Fix
+
+* Correct lint issue in Dockerfile. [Ben Dalling]
+
+* Bump the expected version of Grype tp 0.11.0. [Ben Dalling]
+
+* Bump base Docker image for 3.9.4. [Ben Dalling]
+
+
+## 1.5.1 (2021-04-12)
 
 ### Changes
 
