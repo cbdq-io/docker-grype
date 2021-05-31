@@ -32,12 +32,14 @@ RUN apt-get clean \
        libpq-dev \
        libpython2.7-minimal \
        libpython2.7-stdlib \
+       libwebp-dev \
        linux-libc-dev \
        python2.7 \
        python2.7-minimal \
     && apt-get -y autoremove --purge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
+    && pip uninstall -y pip \
     && wget -qO - https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
 
 COPY docker-grype-cmd.sh /usr/local/bin/docker-grype-cmd.sh
