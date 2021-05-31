@@ -33,6 +33,7 @@ RUN apt-get clean \
        libpython2.7-minimal \
        libpython2.7-stdlib \
        libwebp-dev \
+       libxml2 \
        linux-libc-dev \
        python2.7 \
        python2.7-minimal \
