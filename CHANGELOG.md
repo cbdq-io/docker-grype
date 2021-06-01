@@ -1,7 +1,20 @@
 # Changelog
 
 
-## 1.5.2
+## 1.6.0
+
+### Changes
+
+* Bump Grype version from 0.11.0 to 0.12.1. [Ben Dalling]
+
+### Fix
+
+* Resolve CVE-2021-3517. [Ben Dalling]
+
+* Resolve CVE-2018-20225, CVE-2018-25011, CVE-2018-25014, CVE-2020-36328 & CVE-2020-36329. [Ben Dalling]
+
+
+## 1.5.2 (2021-05-04)
 
 ### Fix
 
