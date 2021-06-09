@@ -1,7 +1,35 @@
 # Changelog
 
 
-## 1.6.0
+## 1.7.0
+
+### New
+
+* Add CVE-2021-33574 to the allowed list. [Ben Dalling]
+
+### Changes
+
+* Minor documentation additions and corrections. [Ben Dalling]
+
+* Bump Grype version from 0.12.1 to 0.13.0. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump urllib3 from 1.26.4 to 1.26.5. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 1.26.4 to 1.26.5.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/1.26.4...1.26.5)
+
+  ---
+  updated-dependencies:
+  - dependency-name: urllib3
+    dependency-type: direct:production
+  ...
+
+
+## 1.6.0 (2021-05-31)
 
 ### Changes
 
