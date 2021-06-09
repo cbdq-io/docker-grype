@@ -1,6 +1,6 @@
 # docker-grype
 
-Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker
+Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker and Provide Allowed List Functionality
 
 ## Environment Variables
 
@@ -75,7 +75,7 @@ docker-compose run grype
 
 ### Drone CI (Kubernetes Pipeline)
 
-With a service defines like this:
+With a service defined like this:
 
 ```YAML
 services:
