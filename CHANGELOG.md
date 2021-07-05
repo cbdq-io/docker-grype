@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.7.0
+## 1.7.1
+
+### Changes
+
+* Bump base (Python) image from 3.9.4 to 3.9.5. [Ben Dalling]
+
+### Fix
+
+* Remove CVE-2021-20231, CVE-2021-20232 and CVE-2021-20305 from the allowed list. [Ben Dalling]
+
+
+## 1.7.0 (2021-06-09)
 
 ### New
 
