@@ -1,7 +1,16 @@
 # Changelog
 
 
-## 1.7.1
+## 1.7.2
+
+### Changes
+
+* Bump base Python image to latest stable (3.9.6). [Ben Dalling]
+
+* Bump expected Grype version from 0.13.0 to 0.15.0. [Ben Dalling]
+
+
+## 1.7.1 (2021-07-05)
 
 ### Changes
 
