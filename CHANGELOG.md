@@ -1,7 +1,20 @@
 # Changelog
 
 
-## 1.7.2
+## 1.8.0
+
+### Changes
+
+* Bump the Grype version from 0.15.0 to 0.17.0. [Ben Dalling]
+
+### Fix
+
+* Add CVE-2021-29921 to VULNERABILITIES_ALLOWED_LIST. [Ben Dalling]
+
+* Remove CVE-2019-25013 from VULNERABILITIES_ALLOWED_LIST. [Ben Dalling]
+
+
+## 1.7.2 (2021-07-17)
 
 ### Changes
 

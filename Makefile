@@ -1,4 +1,4 @@
-TAG = 1.7.2
+TAG = 1.8.0
 
 all: lint build test
 
@@ -35,4 +35,4 @@ test:
 	    docker build -t docker-grype:latest ./docker-grype
 	docker-compose -f tests/resources/docker-compose.yml \
 	  run -e 'LOG_LEVEL=DEBUG' \
-              -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2019-25013,CVE-2021-33574' sut
+              -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2021-29921,CVE-2021-33574' sut
