@@ -1,7 +1,22 @@
 # Changelog
 
 
-## 1.8.0
+## 1.9.0
+
+### Changes
+
+* Bump Grype version from 0.17.0 to 0.23.0. [Ben Dalling]
+
+### Fix
+
+* Resolve vulnerability CVE-2021-41617. [Ben Dalling]
+
+* Resolve vulnerabilities CVE-2021-22945 & CVE-2021-22946. [Ben Dalling]
+
+* Bump base image from python:3.9.6 to python:3.10.0. This resolves the following vulnerabilities CVE-2021-3711, CVE-2021-3712 & CVE-2021-35940. [Ben Dalling]
+
+
+## 1.8.0 (2021-09-01)
 
 ### Changes
 
