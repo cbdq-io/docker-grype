@@ -23,9 +23,12 @@ RUN apt-get clean \
     && apt-get install -y --no-install-recommends \
        docker-ce docker-ce-cli containerd.io \
     && apt-get purge -y \
+       curl \
        libbluetooth3 \
        libbluetooth-dev \
        libc-dev-bin \
+       libcurl3-gnutls \
+       libcurl4 \
        libopenjp2-7 \
        libp11-kit-dev \
        libpq5 \
