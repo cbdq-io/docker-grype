@@ -347,5 +347,5 @@ def main():
     sys.exit(widget.report())
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

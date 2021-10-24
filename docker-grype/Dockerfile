@@ -1,4 +1,4 @@
-FROM python:3.9.6
+FROM python:3.10.0
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -23,9 +23,12 @@ RUN apt-get clean \
     && apt-get install -y --no-install-recommends \
        docker-ce docker-ce-cli containerd.io \
     && apt-get purge -y \
+       curl \
        libbluetooth3 \
        libbluetooth-dev \
        libc-dev-bin \
+       libcurl3-gnutls \
+       libcurl4 \
        libopenjp2-7 \
        libp11-kit-dev \
        libpq5 \
@@ -35,6 +38,7 @@ RUN apt-get clean \
        libwebp-dev \
        libxml2 \
        linux-libc-dev \
+       openssh-client \
        python2.7 \
        python2.7-minimal \
     && apt-get -y autoremove --purge \
