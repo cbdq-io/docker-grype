@@ -1,7 +1,20 @@
 # Changelog
 
 
-## 1.9.0
+## 1.10.0
+
+### Changes
+
+* Bump expected Grype version from 0.24.0 to 0.24.1. [Ben Dalling]
+
+* Bump Grype version from 0.23.0 to 0.24.0. [Ben Dalling]
+
+### Fix
+
+* Add to the VULNERABILITIES_ALLOWED_LIST. [Ben Dalling]
+
+
+## 1.9.0 (2021-10-20)
 
 ### Changes
 
