@@ -7,6 +7,10 @@
 
 * Bump the version of Grype from 0.24.1 to 0.25.0. [Ben Dalling]
 
+### Fix
+
+* GHSA-25xm-hr59-7c27 no longer being detected. [Ben Dalling]
+
 
 ## 1.10.0 (2021-11-15)
 
