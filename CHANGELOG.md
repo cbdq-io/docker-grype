@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.11.0
+## 1.11.1
+
+### Changes
+
+* Bump Grype from 0.25.0 to 0.25.1. [Ben Dalling]
+
+
+## 1.11.0 (2021-11-16)
 
 ### Changes
 
