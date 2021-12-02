@@ -23,6 +23,8 @@ rules:
     level: warning
     indent-sequences: consistent
   line-length:
-    level: warning
     allow-non-breakable-inline-mappings: true
+    ignore: |
+      tests/resources/docker-compose-self-test.yml
+    level: warning
   truthy: disable
