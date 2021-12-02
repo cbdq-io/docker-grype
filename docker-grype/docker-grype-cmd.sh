@@ -21,7 +21,7 @@ if [ -z "$TOLERATE" ]; then
   export TOLERATE='medium'
 fi
 
-if [ ! -z "$ONLY_FIXED" -a $ONLY_FIXED != 1 ]; then
+if [ ! -z "$ONLY_FIXED" -a $ONLY_FIXED -eq "1" ]; then
   GRYPE_ARGS="${GRYPE_ARGS} --only-fixed"
 fi
 

@@ -28,6 +28,7 @@ services:
       DOCKER_PASSWORD: "${DOCKER_PASSWORD-}"
       DOCKER_USERNAME: "${DOCKER_USERNAME-}"
       IMAGE_NAME: docker-grype:latest
+      LOG_LEVEL: DEBUG
       ONLY_FIXED: "${ONLY_FIXED-0}"
     image: docker-grype:latest
     volumes:
