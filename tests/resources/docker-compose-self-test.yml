@@ -1,0 +1,39 @@
+---
+# To use this file, run the following steps:
+# - make build
+# - docker-compose -f tests/resources/docker-compose-self-test.yml up -d docker
+# - docker-compose -f tests/resources/docker-compose-self-test.yml exec docker docker build -f /mnt/docker-grype/Dockerfile --no-cache -t docker-grype:latest /mnt/docker-grype
+# - docker-compose -f tests/resources/docker-compose-self-test.yml run --rm grype
+#
+# To see the errors that are only fixed, run:
+# - ONLY_FIXED=1 docker-compose -f tests/resources/docker-compose-self-test.yml run --rm grype
+version: "3"
+
+services:
+  docker:
+    container_name: docker
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+    image: docker:18-dind
+    privileged: yes
+    volumes:
+      - "../../docker-grype:/mnt/docker-grype:ro"
+
+  grype:
+    container_name: grype
+    depends_on:
+      - docker
+    environment:
+      DOCKER_HOST: tcp://docker:2375
+      DOCKER_PASSWORD: "${DOCKER_PASSWORD-}"
+      DOCKER_USERNAME: "${DOCKER_USERNAME-}"
+      IMAGE_NAME: docker-grype:latest
+      ONLY_FIXED: "${ONLY_FIXED-0}"
+    image: docker-grype:latest
+    volumes:
+      # This will persist the Grype DB so that it will
+      # not need to be downloaded for each invocation.
+      - grype_db:/root/.cache/grype
+
+volumes:
+  grype_db:
