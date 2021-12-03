@@ -108,6 +108,13 @@ class ParseGrypeJSON():
         )
         logging.debug(f"Grype version {grype_data['descriptor']['version']}")
 
+        if 'ONLY_FIXED' in os.environ and os.environ['ONLY_FIXED'] == '1':
+            mesg = 'Only fixed vulnerabilities will be searched for.'
+        else:
+            mesg = 'All vulnerabilities (fixed or not) will be searched for.'
+
+        logging.debug(mesg)
+
         for match in grype_data['matches']:
             vulnerability = match['vulnerability']
             artifact = match['artifact']

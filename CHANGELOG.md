@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.11.1
+## 1.12.0
+
+### New
+
+* Add the ONLY_FIXED flag. [Ben Dalling]
+
+
+## 1.11.1 (2021-11-18)
 
 ### Changes
 

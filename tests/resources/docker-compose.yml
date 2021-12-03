@@ -23,6 +23,8 @@ services:
       DOCKER_HOST: tcp://docker:2375
       DOCKER_TLS_CERTDIR: ""
       IMAGE_NAME: docker-grype:latest
+      LOG_LEVEL: DEBUG
+      ONLY_FIXED: 1
     image: docker-grype:latest
 
 volumes:

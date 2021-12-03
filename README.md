@@ -16,6 +16,8 @@ Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker and Provide
 - `IMAGE_NAME` (_required_):  The name of the image to be scanned.
 - `LOG_LEVEL` (default is `INFO`):  The log level for how much output to be
   provided.  Can be set to DEBUG, INFO, WARNING, ERROR or CRITICAL.
+- `ONLY_FIXED` (_optional_): If set to 1, ignore matches for vulnerabilities
+  that are not fixed.
 - `SHOW_ALL_VULNERABILITIES` (_optional_): Show all vulnerabilities (excluding
   Unknown or Negligible) that are found by the Grype scan.  If this option is
   provided then an additional column in the report called "allowed" indicating

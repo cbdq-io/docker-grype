@@ -1,4 +1,4 @@
-TAG = 1.11.1
+TAG = 1.12.0
 
 all: lint build test
 
@@ -13,6 +13,7 @@ bump_version:
 
 clean:
 	docker-compose -f tests/resources/docker-compose.yml down -t 0
+	docker-compose -f tests/resources/docker-compose-self-test.yml down -t 0
 
 cleanall: clean
 	docker system prune --force --volumes
@@ -31,8 +32,5 @@ push:
 test:
 	docker-compose -f tests/resources/docker-compose.yml up -d docker grype
 	pytest -o cache_dir=/tmp/.pycache -v tests
-	docker-compose -f tests/resources/docker-compose.yml exec -T docker \
-	    docker build -t docker-grype:latest ./docker-grype
-	docker-compose -f tests/resources/docker-compose.yml \
-	  run -e 'LOG_LEVEL=DEBUG' \
-              -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2015-5237,CVE-2017-7297,CVE-2019-13139,CVE-2019-13509,CVE-2019-16884,CVE-2019-5736,CVE-2021-43396,CVE-2021-29921,CVE-2021-33574,CVE-2021-43396,GHSA-c3xm-pvg7-gh7r' sut
+	docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest ./docker-grype
+	docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=GHSA-c3xm-pvg7-gh7r' sut
