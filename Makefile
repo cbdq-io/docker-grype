@@ -34,4 +34,4 @@ test:
 	docker-compose -f tests/resources/docker-compose.yml up -d docker grype
 	pytest -o cache_dir=/tmp/.pycache -v tests
 	docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest ./docker-grype
-	docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=GHSA-c3xm-pvg7-gh7r' sut
+	docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=' sut
