@@ -157,10 +157,35 @@ tag_filter_regexp = r'^[0-9]+\.[0-9]+(\.[0-9]+)?$'
 ##
 ## This label will be used as the changelog Title of the last set of changes
 ## between last valid tag and HEAD if any.
-import os.path
+import json
+import logging
+import os
+import sys
+import urllib3
+
+logger = logging.getLogger('gitchangelog')
 unreleased_version_label = os.environ['UNRELEASED_VERSION_LABEL']
+repo_tags = []
 
+if 'GITHUB_EVENT_NAME' in os.environ:
+    github_event_name = os.environ['GITHUB_EVENT_NAME']
+else:
+    github_event_name = None
 
+if github_event_name == 'pull_request':
+    http = urllib3.PoolManager()
+    url = f'https://api.github.com/repos/{os.environ["GITHUB_REPOSITORY"]}/tags'
+    r = http.request('GET', url)
+    data = json.loads(r.data)
+
+    for tag in data:
+        repo_tags.append(tag['name'])
+
+    print(f'Checking if {unreleased_version_label} is in {repo_tags}.', file=sys.stderr)
+
+    if unreleased_version_label in repo_tags:
+        logger.error(f'The tag {unreleased_version_label} already exists.')
+        sys.exit(1)
 
 ## ``output_engine`` is a callable
 ##

@@ -1,0 +1,28 @@
+---
+name: Pull Request
+
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  changelog:
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Requirements
+        run: pip install -r requirements.txt
+
+      - name: Changelog
+        run: |
+          make changelog
+          cat CHANGELOG.md
+          git diff CHANGELOG.md
