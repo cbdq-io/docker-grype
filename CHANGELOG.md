@@ -1,7 +1,16 @@
 # Changelog
 
 
-## 1.12.0
+## 1.13.0
+
+### Changes
+
+* Bump the base image to python:3.10.1. [Ben Dalling]
+
+* New verion of Grype (0.27.3) is available. [Ben Dalling]
+
+
+## 1.12.0 (2021-12-02)
 
 ### New
 
