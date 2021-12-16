@@ -9,6 +9,10 @@
 
 * New verion of Grype (0.27.3) is available. [Ben Dalling]
 
+### Fix
+
+* GHSA-c3xm-pvg7-gh7r no longer present. [Ben Dalling]
+
 
 ## 1.12.0 (2021-12-02)
 
