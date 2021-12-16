@@ -10,6 +10,8 @@ on:
 
 jobs:
   changelog:
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
 
@@ -21,8 +23,15 @@ jobs:
       - name: Requirements
         run: pip install -r requirements.txt
 
-      - name: Changelog
+      - name: Commited Change Log
+        run: cat CHANGELOG.md
+
+      - name: Generated Change Log
         run: |
           make changelog
           cat CHANGELOG.md
-          git diff CHANGELOG.md
+
+      - name: Difference Between Committed and Generated Change Log
+        run: |
+          make changelog
+          cat CHANGELOG.md
