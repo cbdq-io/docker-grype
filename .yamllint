@@ -27,4 +27,5 @@ rules:
     ignore: |
       tests/resources/docker-compose-self-test.yml
     level: warning
+    max: 120
   truthy: disable
