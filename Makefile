@@ -1,4 +1,4 @@
-TAG = 1.13.0
+TAG = 1.13.1
 
 all: lint build test
 
@@ -29,6 +29,9 @@ push:
 	echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
 	docker push cbdq/docker-grype:$(TAG)
 	docker push cbdq/docker-grype:latest
+
+tag:
+	git tag $(TAG)
 
 test:
 	docker-compose -f tests/resources/docker-compose.yml up -d docker grype
