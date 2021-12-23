@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.13.0
+## 1.14.0
+
+### Changes
+
+* Anchore Grype 0.28.0 is available. [Ben Dalling]
+
+### Fix
+
+* Fix issues with tagging at release time. [Ben Dalling]
+
+
+## 1.13.0 (2021-12-17)
 
 ### Changes
 
