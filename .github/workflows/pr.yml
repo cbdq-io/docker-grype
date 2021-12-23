@@ -23,15 +23,11 @@ jobs:
       - name: Requirements
         run: pip install -r requirements.txt
 
-      - name: Commited Change Log
-        run: cat CHANGELOG.md
-
-      - name: Generated Change Log
+      - name: Changes in this PR Recorded in Change Log
         run: |
           make changelog
-          cat CHANGELOG.md
+          sed '/^\#\{2\} [0-9].*(/q' CHANGELOG.md
 
       - name: Difference Between Committed and Generated Change Log
         run: |
-          make changelog
-          cat CHANGELOG.md
+          git diff CHANGELOG.md

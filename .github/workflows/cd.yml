@@ -42,7 +42,7 @@ jobs:
 
       - name: Create Tag
         run: |
-          git tag $( cat wait4localstack/VERSION )
+          make tag
           git push --tags
         # TODO correct how to pick up the tag number.
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
