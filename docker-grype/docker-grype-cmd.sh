@@ -2,8 +2,6 @@
 
 set -e
 
-GRYPE_ARGS='-o json -v'
-
 if [ -z "$IMAGE_NAME" ]; then
   echo 'ERROR: The IMAGE_NAME environment variable is not set.'
   exit 2
@@ -22,7 +20,9 @@ if [ -z "$TOLERATE" ]; then
 fi
 
 if [[ ( -n "$ONLY_FIXED" ) && ( $ONLY_FIXED -eq "1" ) ]]; then
-  GRYPE_ARGS="${GRYPE_ARGS} --only-fixed"
+  ONLY_FIXED="--only-fixed"
+else
+  ONLY_FIXED=""
 fi
 
 docker_available=0
@@ -55,4 +55,4 @@ if [ -n "${DOCKER_USERNAME}" ]; then
                                 "${DOCKER_SERVER}"
 fi
 
-/usr/local/bin/grype "$IMAGE_NAME" "$GRYPE_ARGS" | /usr/local/bin/parse-grype-json.py
+/usr/local/bin/grype "$IMAGE_NAME" -o json -v "$ONLY_FIXED" | /usr/local/bin/parse-grype-json.py
