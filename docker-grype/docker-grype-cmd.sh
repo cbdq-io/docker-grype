@@ -9,10 +9,10 @@ if [ -z "$IMAGE_NAME" ]; then
   exit 2
 fi
 
-if [ ! -z "${DOCKER_USERNAME}" -a -z "${DOCKER_PASSWORD}" ]; then
+if [[ ( ! -z "${DOCKER_USERNAME}" ) && ( -z "${DOCKER_PASSWORD}" ) ]]; then
   echo "ERROR: You must provide DOCKER_USERNAME and DOCKER_PASSWORD together."
   exit 2
-elif [ -z "${DOCKER_USERNAME}" -a ! -z "${DOCKER_PASSWORD}" ]; then
+elif [[ ( -z "${DOCKER_USERNAME}" ) && ( ! -z "${DOCKER_PASSWORD}" ) ]]; then
   echo "ERROR: You must provide DOCKER_USERNAME and DOCKER_PASSWORD together."
   exit 2
 fi
@@ -21,7 +21,7 @@ if [ -z "$TOLERATE" ]; then
   export TOLERATE='medium'
 fi
 
-if [ ! -z "$ONLY_FIXED" -a $ONLY_FIXED -eq "1" ]; then
+if [[ ( ! -z "$ONLY_FIXED" ) && ( $ONLY_FIXED -eq "1" ) ]]; then
   GRYPE_ARGS="${GRYPE_ARGS} --only-fixed"
 fi
 
