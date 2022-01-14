@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.14.0
+## 1.14.1
+
+### Changes
+
+* Bump Grype version from 0.28.0 to 0.31.1. [Ben Dalling]
+
+### Fix
+
+* Stop shell diagnosic message appearing on the console. [Ben Dalling]
+
+
+## 1.14.0 (2021-12-23)
 
 ### Changes
 
