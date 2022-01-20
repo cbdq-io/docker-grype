@@ -158,9 +158,10 @@ class ParseGrypeJSON():
 
         if len(unused_allowed_vulnerabilities):
             for vulnerability_id in unused_allowed_vulnerabilities:
-                msg = f'"{vulnerability_id}" is in the allowed list '
-                msg += 'but not found in the scan!'
-                logging.warning(msg)
+                if vulnerability_id.strip():
+                    msg = f'"{vulnerability_id}" is in the allowed list '
+                    msg += 'but not found in the scan!'
+                    logging.warning(msg)
 
         logging.debug(
             f'Max severity level found was {self.max_severity_level()}.')
