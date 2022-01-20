@@ -46,7 +46,7 @@ services:
     container_name: docker
     environment:
       DOCKER_TLS_CERTDIR: ""
-    image: docker:18-dind
+    image: docker:dind
     privileged: yes
 
   grype:
