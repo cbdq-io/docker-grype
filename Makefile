@@ -1,6 +1,6 @@
-TAG = 1.14.1
+TAG = 1.14.2
 
-all: lint build test
+all: shellcheck lint build test
 
 build: changelog
 	docker build -f docker-grype/Dockerfile --no-cache -t cbdq/docker-grype:$(TAG) -t cbdq/docker-grype:latest -t docker-grype:$(TAG) -t docker-grype:latest docker-grype
@@ -30,6 +30,9 @@ push:
 	docker push cbdq/docker-grype:$(TAG)
 	docker push cbdq/docker-grype:latest
 
+shellcheck:
+	shellcheck docker-grype/docker-grype-cmd.sh
+
 tag:
 	git tag $(TAG)
 
@@ -37,4 +40,5 @@ test:
 	docker-compose -f tests/resources/docker-compose.yml up -d docker grype
 	pytest -o cache_dir=/tmp/.pycache -v tests
 	docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest ./docker-grype
+	ONLY_FIXED=1 docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=' sut
 	docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=' sut
