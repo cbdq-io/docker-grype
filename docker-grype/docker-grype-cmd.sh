@@ -55,4 +55,5 @@ if [ -n "${DOCKER_USERNAME}" ]; then
                                 "${DOCKER_SERVER}"
 fi
 
-/usr/local/bin/grype "$IMAGE_NAME" -o json -v "$ONLY_FIXED" | /usr/local/bin/parse-grype-json.py
+# shellcheck disable=SC2086
+/usr/local/bin/grype "$IMAGE_NAME" -o json -v $ONLY_FIXED | /usr/local/bin/parse-grype-json.py
