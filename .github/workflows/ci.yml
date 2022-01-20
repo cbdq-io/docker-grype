@@ -29,7 +29,7 @@ jobs:
         run: make lint
 
       - name: ShellCheck
-        ludeeus/action-shellcheck@master
+        uses: ludeeus/action-shellcheck@master
 
       - name: Build
         run: make build
