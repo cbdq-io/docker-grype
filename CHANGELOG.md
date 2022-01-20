@@ -9,6 +9,8 @@
 
 ### Changes
 
+* Bump Grype version from 0.31.1 to 0.32.0. [Ben Dalling]
+
 * Add test scenarios for with/without only fixed. [Ben Dalling]
 
 * Update from ancient versions of Docker in documentation. [Ben Dalling]
