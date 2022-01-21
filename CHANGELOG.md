@@ -1,7 +1,26 @@
 # Changelog
 
 
-## 1.14.1
+## 1.15.0
+
+### New
+
+* Add ShellCheck to CI. [Ben Dalling]
+
+### Changes
+
+* Bump Grype version from 0.31.1 to 0.32.0. [Ben Dalling]
+
+* Add test scenarios for with/without only fixed. [Ben Dalling]
+
+* Update from ancient versions of Docker in documentation. [Ben Dalling]
+
+### Fix
+
+* Still run when not using only-fixed. [Ben Dalling]
+
+
+## 1.14.1 (2022-01-14)
 
 ### Changes
 
