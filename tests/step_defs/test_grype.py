@@ -48,5 +48,6 @@ def the_version_is_queried(test_data):
 def check_the_version_matches_expected_version(test_data):
     """test the version matches <expected_version>."""
     actual_version = test_data['grype_version']
+    expected_version = test_data['expected_version']
     error_message = f'Version {actual_version} != {expected_version}.'
-    assert grype_version == expected_version, error_message
+    assert actual_version == expected_version, error_message
