@@ -1,7 +1,16 @@
 # Changelog
 
 
-## 1.15.0
+## 1.16.0
+
+### Changes
+
+* Bump Python version from 3.10.1 to 3.10.2. [Ben Dalling]
+
+* Ensure a specific version (0.33.0) of Grype is installed. [Ben Dalling]
+
+
+## 1.15.0 (2022-01-21)
 
 ### New
 
