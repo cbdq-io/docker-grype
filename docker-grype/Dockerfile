@@ -1,4 +1,5 @@
-FROM python:3.10.1
+ARG GRYPE_VERSION
+FROM python:3.10.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -45,7 +46,7 @@ RUN apt-get clean \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && pip uninstall -y pip \
-    && wget -qO - https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+    && wget -qO - https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin "$GRYPE_VERSION"
 
 COPY docker-grype-cmd.sh /usr/local/bin/docker-grype-cmd.sh
 COPY parse-grype-json.py /usr/local/bin/parse-grype-json.py
