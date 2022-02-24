@@ -1,9 +1,17 @@
-TAG = 1.15.0
+GRYPE_VERSION = 0.33.0
+TAG = 1.16.0
 
 all: shellcheck lint build test
 
 build: changelog
-	docker build -f docker-grype/Dockerfile --no-cache -t cbdq/docker-grype:$(TAG) -t cbdq/docker-grype:latest -t docker-grype:$(TAG) -t docker-grype:latest docker-grype
+	docker build -f docker-grype/Dockerfile \
+	  --no-cache \
+	  -t cbdq/docker-grype:$(TAG) \
+	  -t cbdq/docker-grype:latest \
+	  -t docker-grype:$(TAG) \
+	  -t docker-grype:latest \
+	  --build-arg GRYPE_VERSION=$(GRYPE_VERSION) \
+	  docker-grype
 
 bump_version: changelog
 	git add .
@@ -37,8 +45,8 @@ tag:
 	git tag $(TAG)
 
 test:
-	docker-compose -f tests/resources/docker-compose.yml up -d docker grype
-	pytest -o cache_dir=/tmp/.pycache -v tests
-	docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest ./docker-grype
-	ONLY_FIXED=1 docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=' sut
-	docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2015-5237,CVE-2020-16156,CVE-2021-29921,CVE-2021-33560,CVE-2021-33574,CVE-2021-45960,CVE-2021-46143,CVE-2022-22822,CVE-2022-22823,CVE-2022-22824,CVE-2022-22825,CVE-2022-22826,CVE-2022-22827' sut
+	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml up -d docker grype
+	GRYPE_VERSION=$(GRYPE_VERSION) pytest -o cache_dir=/tmp/.pycache -v tests
+	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest --build-arg GRYPE_VERSION=$(GRYPE_VERSION) ./docker-grype
+	GRYPE_VERSION=$(GRYPE_VERSION) ONLY_FIXED=1 docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=' sut
+	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2015-5237,CVE-2020-16156,CVE-2021-22570,CVE-2021-29921,CVE-2021-33560,CVE-2021-33574,CVE-2022-0391,CVE-2022-0529,CVE-2022-0530,CVE-2022-23218,CVE-2022-23219' sut

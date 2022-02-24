@@ -22,6 +22,7 @@ services:
     environment:
       DOCKER_HOST: tcp://docker:2375
       DOCKER_TLS_CERTDIR: ""
+      GRYPE_VERSION: "${GRYPE_VERSION}"
       IMAGE_NAME: docker-grype:latest
       LOG_LEVEL: DEBUG
       ONLY_FIXED: "${ONLY_FIXED-0}"

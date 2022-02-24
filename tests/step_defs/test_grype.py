@@ -1,5 +1,7 @@
 # coding=utf-8
 """Grype feature tests."""
+import os
+import pytest
 import testinfra
 
 from pytest_bdd import (
@@ -18,8 +20,15 @@ def test_grype_version():
 @given('the Grype container', target_fixture='test_data')
 def the_grype_container():
     """the Grype container."""
-    test_data = {}
-    test_data['host_url'] = "docker://grype"
+    try:
+        expected_version = os.environ['GRYPE_VERSION']
+        test_data = {
+            'expected_version': expected_version,
+            'host_url': "docker://grype"
+        }
+    except KeyError:
+        pytest.skip('GRYPE_VERSION not set in environment.')
+
     return test_data
 
 
@@ -35,9 +44,10 @@ def the_version_is_queried(test_data):
     test_data['grype_version'] = grype_version
 
 
-@then('check the version matches <expected_version>')
-def check_the_version_matches_expected_version(test_data, expected_version):
+@then('check the version matches the expected version')
+def check_the_version_matches_expected_version(test_data):
     """test the version matches <expected_version>."""
-    grype_version = test_data['grype_version']
-    error_message = f'Version {grype_version} != {expected_version}.'
-    assert grype_version == expected_version, error_message
+    actual_version = test_data['grype_version']
+    expected_version = test_data['expected_version']
+    error_message = f'Version {actual_version} != {expected_version}.'
+    assert actual_version == expected_version, error_message
