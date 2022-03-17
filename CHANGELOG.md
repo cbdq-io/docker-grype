@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.16.0
+## 1.17.0
+
+### Changes
+
+* Bump the Grype version from 0.33.0 to 0.34.3. [Ben Dalling]
+
+### Fix
+
+* Fix build process to ensure requested version is installed. [Ben Dalling]
+
+
+## 1.16.0 (2022-02-24)
 
 ### Changes
 
