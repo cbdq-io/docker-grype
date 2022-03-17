@@ -1,5 +1,5 @@
-ARG GRYPE_VERSION
 FROM python:3.10.2
+ARG GRYPE_VERSION
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -14,7 +14,7 @@ RUN apt-get clean \
        curl \
        gnupg-agent \
        software-properties-common \
-    && wget -qO /tmp/debian.key https://download.docker.com/linux/debian/gpg \
+    && curl -so /tmp/debian.key https://download.docker.com/linux/debian/gpg \
     && apt-key add /tmp/debian.key \
     && add-apt-repository \
        "deb [arch=amd64] https://download.docker.com/linux/debian \
@@ -23,6 +23,7 @@ RUN apt-get clean \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
        docker-ce docker-ce-cli containerd.io \
+    && curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -d -b /usr/local/bin "v${GRYPE_VERSION}" \
     && apt-get purge -y \
        curl \
        libbluetooth3 \
@@ -45,8 +46,7 @@ RUN apt-get clean \
     && apt-get -y autoremove --purge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && pip uninstall -y pip \
-    && wget -qO - https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin "$GRYPE_VERSION"
+    && pip uninstall -y pip
 
 COPY docker-grype-cmd.sh /usr/local/bin/docker-grype-cmd.sh
 COPY parse-grype-json.py /usr/local/bin/parse-grype-json.py
