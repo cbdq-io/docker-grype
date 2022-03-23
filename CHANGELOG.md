@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.17.0
+## 1.18.0
+
+### Changes
+
+* Bump version of Anchore Grype from 0.34.3 to 0.34.6. [Ben Dalling]
+
+
+## 1.17.0 (2022-03-18)
 
 ### Changes
 
