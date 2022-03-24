@@ -21,7 +21,7 @@ RUN apt-get clean \
        $(lsb_release -cs) \
        stable" \
     && apt-get update \
-    && apt-get upgrade libssl-dev \
+    && apt-get upgrade -y libssl-dev \
     && apt-get install -y --no-install-recommends \
        docker-ce docker-ce-cli containerd.io \
     && curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -d -b /usr/local/bin "v${GRYPE_VERSION}" \
