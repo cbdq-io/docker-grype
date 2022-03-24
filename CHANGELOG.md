@@ -5,7 +5,13 @@
 
 ### Changes
 
+* Add GHSA-c3xm-pvg7-gh7r, GHSA-fgv8-vj5c-2ppq & GHSA-q3j5-32m5-58c2 to the allowed list. [Ben Dalling]
+
 * Bump version of Anchore Grype from 0.34.3 to 0.34.6. [Ben Dalling]
+
+### Fix
+
+* Attempt to fix CVE-2022-0778. [Ben Dalling]
 
 
 ## 1.17.0 (2022-03-18)
