@@ -26,6 +26,7 @@ services:
       IMAGE_NAME: docker-grype:latest
       LOG_LEVEL: DEBUG
       ONLY_FIXED: "${ONLY_FIXED-0}"
+      SHOW_ALL_VULNERABILITIES: 1
     image: docker-grype:latest
 
 volumes:
