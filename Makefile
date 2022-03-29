@@ -1,5 +1,5 @@
-GRYPE_VERSION = 0.34.3
-TAG = 1.17.0
+GRYPE_VERSION = 0.34.7
+TAG = 1.18.0
 
 all: shellcheck lint build test
 
@@ -49,5 +49,5 @@ test:
 	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml up -d docker grype
 	GRYPE_VERSION=$(GRYPE_VERSION) pytest -o cache_dir=/tmp/.pycache -v tests
 	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest --build-arg GRYPE_VERSION=$(GRYPE_VERSION) ./docker-grype
-	GRYPE_VERSION=$(GRYPE_VERSION) ONLY_FIXED=1 docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=' sut
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2015-5237,CVE-2020-16156,CVE-2021-3737,CVE-2021-22570,CVE-2021-29921,CVE-2021-33560,CVE-2021-33574,CVE-2022-0391,CVE-2022-0529,CVE-2022-0530,CVE-2022-21698,CVE-2022-23218,CVE-2022-23219' sut
+	GRYPE_VERSION=$(GRYPE_VERSION) ONLY_FIXED=1 docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=GHSA-c3xm-pvg7-gh7r,GHSA-crp2-qrr5-8pq7,GHSA-fgv8-vj5c-2ppq,GHSA-q3j5-32m5-58c2' sut
+	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml run --rm -e 'VULNERABILITIES_ALLOWED_LIST=CVE-2015-5237,CVE-2020-16156,CVE-2021-3737,CVE-2021-22570,CVE-2021-29921,CVE-2021-33560,CVE-2022-0391,CVE-2022-0529,CVE-2022-0530,CVE-2022-21698,GHSA-c3xm-pvg7-gh7r,GHSA-crp2-qrr5-8pq7,GHSA-fgv8-vj5c-2ppq,GHSA-q3j5-32m5-58c2' sut

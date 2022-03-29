@@ -1,4 +1,4 @@
-FROM python:3.10.2
+FROM python:3
 ARG GRYPE_VERSION
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -21,6 +21,7 @@ RUN apt-get clean \
        $(lsb_release -cs) \
        stable" \
     && apt-get update \
+    && apt-get upgrade -y libssl-dev \
     && apt-get install -y --no-install-recommends \
        docker-ce docker-ce-cli containerd.io \
     && curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -d -b /usr/local/bin "v${GRYPE_VERSION}" \
