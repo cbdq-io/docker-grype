@@ -5,6 +5,32 @@
 
 ### Changes
 
+* Bump Grype version from 0.34.7 to 0.35.0. [Ben Dalling]
+
+### Fix
+
+* Add GHSA-8v99-48m9-c8pm to the allowed list. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump paramiko from 2.7.2 to 2.10.1. [dependabot[bot]]
+
+  Bumps [paramiko](https://github.com/paramiko/paramiko) from 2.7.2 to 2.10.1.
+  - [Release notes](https://github.com/paramiko/paramiko/releases)
+  - [Changelog](https://github.com/paramiko/paramiko/blob/main/NEWS)
+  - [Commits](https://github.com/paramiko/paramiko/compare/2.7.2...2.10.1)
+
+  ---
+  updated-dependencies:
+  - dependency-name: paramiko
+    dependency-type: direct:production
+  ...
+
+
+## 1.18.0 (2022-03-29)
+
+### Changes
+
 * Bump image of Grype from 0.34.6 to 0.34.7. [Ben Dalling]
 
 * Add GHSA-c3xm-pvg7-gh7r, GHSA-fgv8-vj5c-2ppq & GHSA-q3j5-32m5-58c2 to the allowed list. [Ben Dalling]
