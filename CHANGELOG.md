@@ -1,7 +1,7 @@
 # Changelog
 
 
-## 1.18.0
+## 1.19.0
 
 ### Changes
 
