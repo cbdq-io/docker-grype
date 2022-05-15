@@ -1,7 +1,20 @@
 # Changelog
 
 
-## 1.19.0
+## 1.19.1
+
+### Changes
+
+* Bump the version of Anchore Grype from 0.35.0 to 0.37.0. [Ben Dalling]
+
+### Fix
+
+* No longer finding CVE-2022-21698, CVE-2022-24778 or GHSA-8v99-48m9-c8pm in the scan. [Ben Dalling]
+
+* Add CVE-2022-29458 to non-fixed allowed list. [Ben Dalling]
+
+
+## 1.19.0 (2022-04-28)
 
 ### Changes
 
