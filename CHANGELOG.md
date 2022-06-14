@@ -1,7 +1,16 @@
 # Changelog
 
 
-## 1.19.1
+## 1.19.2
+
+### Changes
+
+* Update non-fixed allowed vulnerability list. [Ben Dalling]
+
+* Bump the version of Anchore Grype from 0.37.0 to 0.39.0. [Ben Dalling]
+
+
+## 1.19.1 (2022-05-17)
 
 ### Changes
 
