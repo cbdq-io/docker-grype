@@ -1,4 +1,5 @@
 attrs==20.3.0
+bandit==1.7.4
 bcrypt==3.2.0
 cached-property==1.5.2
 certifi==2020.12.5
@@ -14,6 +15,8 @@ docopt==0.6.2
 flake8==3.8.4
 flake8-docstrings==1.5.0
 gitchangelog==3.0.4
+gitdb==4.0.9
+GitPython==3.1.27
 glob2==0.7
 idna==2.10
 importlib-metadata==3.3.0
@@ -27,6 +30,7 @@ paramiko==2.7.2
 parse==1.18.0
 parse-type==0.5.2
 pathspec==0.8.1
+pbr==5.9.0
 pluggy==0.13.1
 py==1.10.0
 pycodestyle==2.6.0
@@ -45,7 +49,9 @@ python-dotenv==0.15.0
 PyYAML==5.4
 requests==2.25.1
 six==1.15.0
+smmap==5.0.0
 snowballstemmer==2.0.0
+stevedore==3.5.0
 testinfra-bdd==0.2.0
 texttable==1.6.3
 toml==0.10.2

@@ -28,6 +28,9 @@ jobs:
       - name: Lint
         run: make lint
 
+      - name: Bandit Analyzer
+        run: bandit -r .
+
       - name: ShellCheck
         uses: ludeeus/action-shellcheck@master
 
