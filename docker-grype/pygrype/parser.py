@@ -148,13 +148,11 @@ class ParseGrypeJSON():
                     add_vulnerability = False
 
             if add_vulnerability:
-                vulnerability = Vulnerability(
-                    vulnerability_name,
-                    vulnerability_installed,
-                    vulnerability_id,
-                    vulnerability_severity,
-                    allowed
-                )
+                vulnerability = Vulnerability(vulnerability_id)
+                vulnerability.name(vulnerability_name)
+                vulnerability.installed_version(vulnerability_installed)
+                vulnerability.severity(vulnerability_severity)
+                vulnerability.allowed(allowed)
                 vulnerabilities.add(vulnerability)
 
         print(vulnerabilities)

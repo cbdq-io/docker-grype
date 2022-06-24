@@ -33,11 +33,11 @@ class Vulnerabilities:
 
         for vulnerability in self._vulnerabilities:
             row = [
-                vulnerability.name,
-                vulnerability.installed_version,
+                vulnerability.name(),
+                vulnerability.installed_version(),
                 vulnerability.vulnerability_id,
-                vulnerability.severity,
-                vulnerability.allowed
+                vulnerability.severity(),
+                vulnerability.allowed()
             ]
 
             if not self._show_all:
