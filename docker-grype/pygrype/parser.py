@@ -5,6 +5,7 @@ import os
 import sys
 
 from pygrype.vulnerabilities import Vulnerabilities
+from pygrype.vulnerability import Vulnerability
 
 
 class ParseGrypeJSON():
@@ -117,12 +118,12 @@ class ParseGrypeJSON():
         logging.debug(mesg)
 
         for match in grype_data['matches']:
-            vulnerability = match['vulnerability']
+            matched_vulnerability = match['vulnerability']
             artifact = match['artifact']
             vulnerability_name = artifact['name']
             vulnerability_installed = artifact['version']
-            vulnerability_id = vulnerability['id']
-            vulnerability_severity = vulnerability['severity']
+            vulnerability_id = matched_vulnerability['id']
+            vulnerability_severity = matched_vulnerability['severity']
             level = self.tolerance_name2level(vulnerability_severity)
 
             if vulnerability_id in unused_allowed_vulnerabilities:
@@ -147,13 +148,14 @@ class ParseGrypeJSON():
                     add_vulnerability = False
 
             if add_vulnerability:
-                vulnerabilities.add(
+                vulnerability = Vulnerability(
                     vulnerability_name,
                     vulnerability_installed,
                     vulnerability_id,
                     vulnerability_severity,
                     allowed
                 )
+                vulnerabilities.add(vulnerability)
 
         print(vulnerabilities)
 

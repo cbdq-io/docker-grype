@@ -14,6 +14,7 @@ class Vulnerabilities:
             Are all vulnerabilities (not just failing ones) be shown.
         """
         self._vulnerabilities = []
+        self._id_list = []
         self._show_all = show_all
 
     def __str__(self):
@@ -30,7 +31,15 @@ class Vulnerabilities:
         else:
             response = 'NAME,INSTALLED,VULNERABILITY,SEVERITY\n'
 
-        for row in self._vulnerabilities:
+        for vulnerability in self._vulnerabilities:
+            row = [
+                vulnerability.name,
+                vulnerability.installed_version,
+                vulnerability.vulnerability_id,
+                vulnerability.severity,
+                vulnerability.allowed
+            ]
+
             if not self._show_all:
                 row = row[:-1]
 
@@ -39,35 +48,18 @@ class Vulnerabilities:
 
         return response
 
-    def add(self, name, installed, vulnerability, severity, allowed):
+    def add(self, vulnerability):
         """
-        Add a vulnerability to the list.
+        Add a vulnerability to the list to be reported.
 
         Parameters
         ----------
-        name : str
-            The name of the vulnerability (e.g. apt).
-        installed : str
-            The version of the installed software (e.g. 1.8.2.2).
-        vulnerability : str
+        vulnerability : pygrype.vulnerability.Vulnerability
             The ID of the vulnerability (e.g. CVE-2011-3374).
-        severity : str
-            The severity of the vulnerability.
-        allowed : bool
-            Is the vulnerability in the allowed list.
         """
-        if allowed:
-            allowed = 'yes'
-        else:
-            allowed = 'no'
+        # Avoid duplicated reporting on a single vulnerability.
+        if vulnerability.vulnerability_id in self._id_list:
+            return
 
-        for v in self._vulnerabilities:
-            if v[2] == vulnerability:
-                return
-
-        self._vulnerabilities.append([
-            name,
-            installed,
-            vulnerability,
-            severity,
-            allowed])
+        self._id_list.append(vulnerability.vulnerability_id)
+        self._vulnerabilities.append(vulnerability)
