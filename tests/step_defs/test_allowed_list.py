@@ -13,6 +13,7 @@ from pytest_bdd import (
 
 @scenario('../features/allowed_list.feature', 'No Allowed List')
 def test_no_allowed_list():
+    """No Allowed List."""
     exception_message = 'VULNERABILITIES_ALLOWED_LIST is set in environment'
     assert 'VULNERABILITIES_ALLOWED_LIST' not in os.environ,\
         exception_message

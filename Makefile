@@ -30,8 +30,7 @@ cleanall: clean
 
 lint:
 	yamllint -s .
-	flake8 docker-grype/parse-grype-json.py
-	pycodestyle -v tests
+	flake8
 	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
 
 push:

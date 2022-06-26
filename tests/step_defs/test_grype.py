@@ -8,8 +8,6 @@ from pytest_bdd import (
     then
 )
 
-from pytest_bdd import scenario
-
 # Ensure that the PyTest fixtures provided in testinfra-bdd are available to
 # your test suite.
 pytest_plugins = ['testinfra_bdd']

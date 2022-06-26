@@ -60,19 +60,10 @@ class ParseGrypeJSON():
         vulnerability_id = matched_vulnerability['id']
         vulnerability_severity = matched_vulnerability['severity']
         level = self.tolerance_name2level(vulnerability_severity)
+        allowed = self.is_vulnerability_allowed(vulnerability_id)
+        add_vulnerability = self.show_all()
 
-        if vulnerability_id in self.vulnerabilities_allowed_list():
-            allowed = True
-        else:
-            allowed = False
-
-        add_vulnerability = False
-
-        if level <= self.tolerance_level() and self.show_all():
-            add_vulnerability = True
-        elif level > self.tolerance_level() and allowed and self.show_all():
-            add_vulnerability = True
-        elif level > self.tolerance_level() and not allowed:
+        if level > self.tolerance_level() and not allowed:
             add_vulnerability = True
             self.max_severity_level(level)
 
@@ -127,6 +118,26 @@ class ParseGrypeJSON():
 
         return vulnerabilities, unused_allowed_vulnerabilities
 
+    def collect_data(self):
+        """
+        Collect the Grype data from a file or stdin.
+
+        Returns
+        -------
+        dict
+            The parsed JSON data.
+        """
+        filename = self.filename()
+
+        if filename:
+            stream = open(filename)
+            grype_data = json.load(stream)
+            stream.close()
+        else:
+            grype_data = json.load(sys.stdin)
+
+        return grype_data
+
     def filename(self, filename=None):
         """
         Get/set the filename.
@@ -146,6 +157,27 @@ class ParseGrypeJSON():
             self._filename = filename
 
         return self._filename
+
+    def is_vulnerability_allowed(self, vulnerability_id):
+        """
+        Check if a vulnerability ID is in the allowed list.
+
+        Parameters
+        ----------
+        vulnerability_id : str
+            The vulnerability id (e.g. CVE-000-0000).
+
+        Returns
+        -------
+        bool
+            True if the ID is found in the allowed list.
+        """
+        if vulnerability_id in self.vulnerabilities_allowed_list():
+            allowed = True
+        else:
+            allowed = False
+
+        return allowed
 
     def max_severity_level(self, max_severity_level=None):
         """
@@ -170,7 +202,7 @@ class ParseGrypeJSON():
 
     def only_fixed(self):
         """
-        Should we be looking for only fixed vulnerabilities?
+        Check if we be looking for only fixed vulnerabilities.
 
         Returns
         -------
@@ -200,15 +232,7 @@ class ParseGrypeJSON():
             Zero if all vulnerabilities have a tolerance less than or equal to
             the specified tolerance.  Non-zero otherwise.
         """
-        filename = self.filename()
-
-        if filename:
-            stream = open(filename)
-            grype_data = json.load(stream)
-            stream.close()
-        else:
-            grype_data = json.load(sys.stdin)
-
+        grype_data = self.collect_data()
         (vulnerabilities, unused_allowed_vulnerabilities) = self.analyse_grype_data(grype_data)
 
         if len(unused_allowed_vulnerabilities):
