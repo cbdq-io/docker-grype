@@ -13,15 +13,6 @@ class ParseGrypeJSON():
 
     def __init__(self):
         """Create a ParseGrypeJSON object."""
-        if 'LOG_LEVEL' in os.environ:
-            log_level = os.environ['LOG_LEVEL']
-        else:
-            log_level = 'INFO'
-
-        logging.basicConfig(
-            format='%(levelname)s:%(message)s',
-            level=log_level)
-
         self._tolerance_name = None
 
         if 'TOLERATE' in os.environ:
@@ -305,7 +296,7 @@ class ParseGrypeJSON():
         if tolerance_name is not None:
             self._tolerance_name = tolerance_name.capitalize()
 
-            if tolerance_name not in self.valid_tolerance_names():
+            if self._tolerance_name not in self.valid_tolerance_names():
                 raise ValueError(f'Invalid tolerance level {tolerance_name}.')
 
             level = self.tolerance_name2level(
