@@ -22,6 +22,8 @@ class ParseGrypeJSON():
             format='%(levelname)s:%(message)s',
             level=log_level)
 
+        self._tolerance_name = None
+
         if 'TOLERATE' in os.environ:
             self.tolerance_name(os.environ['TOLERATE'])
         else:
@@ -30,9 +32,100 @@ class ParseGrypeJSON():
         self._max_severity_level = 0
         self._filename = None
         self._show_all = False
+        self._only_fixed = None
 
         if 'SHOW_ALL_VULNERABILITIES' in os.environ:
             self.show_all(True)
+
+    def analyse_a_vulnerability(self, artifact, matched_vulnerability):
+        """
+        Analyse a matched vulnerability.
+
+        If important, return the vulnerability otherwise return None.
+
+        Parameters
+        ----------
+        artifact : dict
+            A dictionary representing the artifact.
+        matched_vulnerability : dict
+            A dictionary representing a single vulnerability.
+
+        Returns
+        -------
+        pygrype.vulnerability.Vulnerability
+            The vulnerability or None of it doesn't qualify.
+        """
+        vulnerability_name = artifact['name']
+        vulnerability_installed = artifact['version']
+        vulnerability_id = matched_vulnerability['id']
+        vulnerability_severity = matched_vulnerability['severity']
+        level = self.tolerance_name2level(vulnerability_severity)
+
+        if vulnerability_id in self.vulnerabilities_allowed_list():
+            allowed = True
+        else:
+            allowed = False
+
+        add_vulnerability = False
+
+        if level <= self.tolerance_level() and self.show_all():
+            add_vulnerability = True
+        elif level > self.tolerance_level() and allowed and self.show_all():
+            add_vulnerability = True
+        elif level > self.tolerance_level() and not allowed:
+            add_vulnerability = True
+            self.max_severity_level(level)
+
+        if add_vulnerability:
+            vulnerability = Vulnerability(vulnerability_id)
+            vulnerability.name(vulnerability_name)
+            vulnerability.installed_version(vulnerability_installed)
+            vulnerability.severity(vulnerability_severity)
+            vulnerability.allowed(allowed)
+            return vulnerability
+
+        return None
+
+    def analyse_grype_data(self, grype_data):
+        """
+        Analyse the Grype data for vulnerabilities.
+
+        Parameters
+        ----------
+        grype_data : dict
+            The JSON file parsed into a dict.
+
+        Returns
+        -------
+        tuple
+            A list of Vulnerabilities.
+            A list of allowed vulnerabilities that were not found in the scan.
+        """
+        vulnerabilities = Vulnerabilities(self.show_all())
+        unused_allowed_vulnerabilities = self.vulnerabilities_allowed_list()
+
+        logging.debug(
+            f'Tolerance is {self.tolerance_name()} '
+            + f'({self.tolerance_level()})'
+        )
+        logging.debug(f"Grype version {grype_data['descriptor']['version']}")
+        self.only_fixed()
+
+        for match in grype_data['matches']:
+            artifact = match['artifact']
+            matched_vulnerability = match['vulnerability']
+            vulnerability = self.analyse_a_vulnerability(artifact, matched_vulnerability)
+
+            if not vulnerability:
+                continue
+
+            vulnerabilities.add(vulnerability)
+
+        for vulnerability in vulnerabilities.vulnerabilities:
+            if vulnerability.vulnerability_id in unused_allowed_vulnerabilities:
+                unused_allowed_vulnerabilities.remove(vulnerability.vulnerability_id)
+
+        return vulnerabilities, unused_allowed_vulnerabilities
 
     def filename(self, filename=None):
         """
@@ -75,6 +168,28 @@ class ParseGrypeJSON():
 
         return self._max_severity_level
 
+    def only_fixed(self):
+        """
+        Should we be looking for only fixed vulnerabilities?
+
+        Returns
+        -------
+        bool
+            True of only flagging fixed vulnerabilities.  False if checking all vulnerabilities.
+        """
+        if self._only_fixed is not None:
+            return self._only_fixed
+
+        if 'ONLY_FIXED' in os.environ and os.environ['ONLY_FIXED'] == '1':
+            mesg = 'Only fixed vulnerabilities will be searched for.'
+            self._only_fixed = True
+        else:
+            self._only_fixed = False
+            mesg = 'All vulnerabilities (fixed or not) will be searched for.'
+
+        logging.debug(mesg)
+        return self._only_fixed
+
     def report(self):
         """
         Create a report of the non-tolerated vulnerabilities.
@@ -85,16 +200,6 @@ class ParseGrypeJSON():
             Zero if all vulnerabilities have a tolerance less than or equal to
             the specified tolerance.  Non-zero otherwise.
         """
-        tolerance_name = self.tolerance_name()
-        valid_tolerance_names = self.valid_tolerance_names()
-
-        if tolerance_name not in self.valid_tolerance_names():
-            error_message = f'{tolerance_name} is not a valid tolerance '
-            error_message += f'({",".join(valid_tolerance_names)})'
-            raise ValueError(error_message)
-
-        vulnerabilities = Vulnerabilities(self.show_all())
-        unused_allowed_vulnerabilities = self.vulnerabilities_allowed_list()
         filename = self.filename()
 
         if filename:
@@ -104,58 +209,7 @@ class ParseGrypeJSON():
         else:
             grype_data = json.load(sys.stdin)
 
-        logging.debug(
-            f'Tolerance is {self.tolerance_name()} '
-            + f'({self.tolerance_level()})'
-        )
-        logging.debug(f"Grype version {grype_data['descriptor']['version']}")
-
-        if 'ONLY_FIXED' in os.environ and os.environ['ONLY_FIXED'] == '1':
-            mesg = 'Only fixed vulnerabilities will be searched for.'
-        else:
-            mesg = 'All vulnerabilities (fixed or not) will be searched for.'
-
-        logging.debug(mesg)
-
-        for match in grype_data['matches']:
-            matched_vulnerability = match['vulnerability']
-            artifact = match['artifact']
-            vulnerability_name = artifact['name']
-            vulnerability_installed = artifact['version']
-            vulnerability_id = matched_vulnerability['id']
-            vulnerability_severity = matched_vulnerability['severity']
-            level = self.tolerance_name2level(vulnerability_severity)
-
-            if vulnerability_id in unused_allowed_vulnerabilities:
-                unused_allowed_vulnerabilities.remove(vulnerability_id)
-
-            if vulnerability_id in self.vulnerabilities_allowed_list():
-                allowed = True
-            else:
-                allowed = False
-
-            if level <= self.tolerance_level() and not self.show_all():
-                add_vulnerability = False
-            elif level <= self.tolerance_level() and self.show_all():
-                add_vulnerability = True
-            elif level > self.tolerance_level():
-                if not allowed:
-                    add_vulnerability = True
-                    self.max_severity_level(level)
-                elif allowed and self.show_all():
-                    add_vulnerability = True
-                else:
-                    add_vulnerability = False
-
-            if add_vulnerability:
-                vulnerability = Vulnerability(vulnerability_id)
-                vulnerability.name(vulnerability_name)
-                vulnerability.installed_version(vulnerability_installed)
-                vulnerability.severity(vulnerability_severity)
-                vulnerability.allowed(allowed)
-                vulnerabilities.add(vulnerability)
-
-        print(vulnerabilities)
+        (vulnerabilities, unused_allowed_vulnerabilities) = self.analyse_grype_data(grype_data)
 
         if len(unused_allowed_vulnerabilities):
             for vulnerability_id in unused_allowed_vulnerabilities:
@@ -164,6 +218,7 @@ class ParseGrypeJSON():
                     msg += 'but not found in the scan!'
                     logging.warning(msg)
 
+        print(vulnerabilities)
         logging.debug(
             f'Max severity level found was {self.max_severity_level()}.')
 
@@ -213,9 +268,22 @@ class ParseGrypeJSON():
         Get or set the tolerance name.
 
         This will take the name and set to the tolerance level as well.
+
+        Parameters
+        ----------
+        tolerance_name : str
+            The tolerance name (e.g. CRITICAL).  Must match a value from valid_tolerance_names().
+
+        Raises
+        ------
+            ValueError if the tolerance level is invalid.
         """
         if tolerance_name is not None:
             self._tolerance_name = tolerance_name.capitalize()
+
+            if tolerance_name not in self.valid_tolerance_names():
+                raise ValueError(f'Invalid tolerance level {tolerance_name}.')
+
             level = self.tolerance_name2level(
                 tolerance_name.capitalize())
             self.tolerance_level(level)

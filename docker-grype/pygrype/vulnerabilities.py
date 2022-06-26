@@ -13,7 +13,7 @@ class Vulnerabilities:
         show_all : bool
             Are all vulnerabilities (not just failing ones) be shown.
         """
-        self._vulnerabilities = []
+        self.vulnerabilities = []
         self._id_list = []
         self._show_all = show_all
 
@@ -31,7 +31,7 @@ class Vulnerabilities:
         else:
             response = 'NAME,INSTALLED,VULNERABILITY,SEVERITY\n'
 
-        for vulnerability in self._vulnerabilities:
+        for vulnerability in self.vulnerabilities:
             row = [
                 vulnerability.name(),
                 vulnerability.installed_version(),
@@ -62,4 +62,4 @@ class Vulnerabilities:
             return
 
         self._id_list.append(vulnerability.vulnerability_id)
-        self._vulnerabilities.append(vulnerability)
+        self.vulnerabilities.append(vulnerability)

@@ -1,7 +1,24 @@
 # Changelog
 
 
-## 1.19.2
+## 1.19.3
+
+### New
+
+* Add the Bandit analyzer. [Ben Dalling]
+
+### Changes
+
+* Bump Grype version from 0.40.0 to 0.40.1. [Ben Dalling]
+
+### Fix
+
+* Implement Code Climate improvements. [Ben Dalling]
+
+* Bump Grype version from 0.39.0 to 0.40.0. [Ben Dalling]
+
+
+## 1.19.2 (2022-06-15)
 
 ### Changes
 
