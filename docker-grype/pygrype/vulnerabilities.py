@@ -129,3 +129,22 @@ class Vulnerabilities:
 
         self._id_list.append(vulnerability.vulnerability_id)
         self.vulnerabilities.append(vulnerability)
+
+    def missing_and_allowed(self):
+        """
+        Provide a list of vulnerabilitiy ids that are in the allowed list, but not found in the scan.
+
+        Returns
+        -------
+        list
+            The list of allowed identifiers that are not in the scan.
+        """
+        response = self.params.vulnerabilities_allowed
+
+        for vulnerability in self.vulnerabilities:
+            vid = vulnerability.vulnerability_id
+
+            if vid in response:
+                response.remove(vid)
+
+        return response

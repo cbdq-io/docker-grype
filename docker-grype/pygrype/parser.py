@@ -82,7 +82,6 @@ class ParseGrypeJSON():
             A list of allowed vulnerabilities that were not found in the scan.
         """
         vulnerabilities = Vulnerabilities(self.params)
-        unused_allowed_vulnerabilities = self.params.vulnerabilities_allowed
 
         logging.debug(
             f'Tolerance is {self.params.tolerance_name} '
@@ -101,11 +100,7 @@ class ParseGrypeJSON():
 
             vulnerabilities.add(vulnerability)
 
-        for vulnerability in vulnerabilities.vulnerabilities:
-            if vulnerability.vulnerability_id in unused_allowed_vulnerabilities:
-                unused_allowed_vulnerabilities.remove(vulnerability.vulnerability_id)
-
-        return vulnerabilities, unused_allowed_vulnerabilities
+        return vulnerabilities
 
     def collect_data(self):
         """
@@ -222,14 +217,13 @@ class ParseGrypeJSON():
             the specified tolerance.  Non-zero otherwise.
         """
         grype_data = self.collect_data()
-        (vulnerabilities, unused_allowed_vulnerabilities) = self.analyse_grype_data(grype_data)
+        vulnerabilities = self.analyse_grype_data(grype_data)
 
-        if len(unused_allowed_vulnerabilities):
-            for vulnerability_id in unused_allowed_vulnerabilities:
-                if vulnerability_id.strip():
-                    msg = f'"{vulnerability_id}" is in the allowed list '
-                    msg += 'but not found in the scan!'
-                    logging.warning(msg)
+        for vulnerability_id in vulnerabilities.missing_and_allowed():
+            if vulnerability_id.strip():
+                msg = f'"{vulnerability_id}" is in the allowed list '
+                msg += 'but not found in the scan!'
+                logging.warning(msg)
 
         print(vulnerabilities)
         logging.debug(
