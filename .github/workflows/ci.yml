@@ -28,6 +28,9 @@ jobs:
       - name: Lint
         run: make lint
 
+      - name: Bandit Analyzer
+        run: bandit -r .
+
       - name: ShellCheck
         uses: ludeeus/action-shellcheck@master
 
@@ -36,3 +39,12 @@ jobs:
 
       - name: Test
         run: make test
+
+      - name: Publish Code Coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: coverage xml
+          coverageLocations: |
+            ${{github.workspace}}/coverage.xml:coverage.py

@@ -51,5 +51,6 @@ RUN apt-get clean \
 
 COPY docker-grype-cmd.sh /usr/local/bin/docker-grype-cmd.sh
 COPY parse-grype-json.py /usr/local/bin/parse-grype-json.py
+COPY pygrype /usr/local/lib/python3.10/pygrype
 
 CMD ["/usr/local/bin/docker-grype-cmd.sh"]

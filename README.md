@@ -1,5 +1,7 @@
 # docker-grype
 
+[![CI](https://github.com/cbdq-io/docker-grype/actions/workflows/ci.yml/badge.svg)](https://github.com/cbdq-io/docker-grype/actions/workflows/ci.yml)
+
 Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker and Provide Allowed List Functionality
 
 ## Environment Variables
