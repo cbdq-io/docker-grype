@@ -1,24 +1,21 @@
 #!/usr/bin/env python
 """Parse the JSON output of the Anchore Grype command."""
 import logging
-import os
 import sys
 
+from pygrype.params import Params
 from pygrype.parser import ParseGrypeJSON
 
 
 def main():
     """Process a command line request."""
-    if 'LOG_LEVEL' in os.environ:
-        log_level = os.environ['LOG_LEVEL']
-    else:
-        log_level = 'INFO'
+    params = Params()
 
     logging.basicConfig(
         format='%(levelname)s:%(message)s',
-        level=log_level)
+        level=params.log_level)
 
-    widget = ParseGrypeJSON()
+    widget = ParseGrypeJSON(params)
     logging.debug(f'argv {",".join(sys.argv)}')
 
     if len(sys.argv) > 1:

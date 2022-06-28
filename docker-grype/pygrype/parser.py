@@ -1,32 +1,30 @@
 """File: pygrype/parser.py."""
 import json
 import logging
-import os
 import sys
 
 from pygrype.vulnerabilities import Vulnerabilities
 from pygrype.vulnerability import Vulnerability
+from pygrype.vulnerabilities import severity_name_to_level
 
 
 class ParseGrypeJSON():
     """Parse the JSON output from Anchore Grype."""
 
-    def __init__(self):
-        """Create a ParseGrypeJSON object."""
-        self._tolerance_name = None
+    def __init__(self, params):
+        """
+        Create a ParseGrypeJSON object.
 
-        if 'TOLERATE' in os.environ:
-            self.tolerance_name(os.environ['TOLERATE'])
-        else:
-            self.tolerance_name('Medium')
-
-        self._max_severity_level = 0
+        Parameters
+        ----------
+        params : pygype.params.Params
+            The runtime parameters as gathered from the environment.
+        """
         self._filename = None
-        self._show_all = False
         self._only_fixed = None
+        self._max_severity_level = 0
 
-        if 'SHOW_ALL_VULNERABILITIES' in os.environ:
-            self.show_all(True)
+        self.params = params
 
     def analyse_a_vulnerability(self, artifact, matched_vulnerability):
         """
@@ -50,11 +48,11 @@ class ParseGrypeJSON():
         vulnerability_installed = artifact['version']
         vulnerability_id = matched_vulnerability['id']
         vulnerability_severity = matched_vulnerability['severity']
-        level = self.tolerance_name2level(vulnerability_severity)
+        level = severity_name_to_level(vulnerability_severity)
         allowed = self.is_vulnerability_allowed(vulnerability_id)
-        add_vulnerability = self.show_all()
+        add_vulnerability = self.params.show_all_vulnerabilities
 
-        if level > self.tolerance_level() and not allowed:
+        if level > self.params.tolerance_level and not allowed:
             add_vulnerability = True
             self.max_severity_level(level)
 
@@ -83,12 +81,12 @@ class ParseGrypeJSON():
             A list of Vulnerabilities.
             A list of allowed vulnerabilities that were not found in the scan.
         """
-        vulnerabilities = Vulnerabilities(self.show_all())
-        unused_allowed_vulnerabilities = self.vulnerabilities_allowed_list()
+        vulnerabilities = Vulnerabilities(self.params)
+        unused_allowed_vulnerabilities = self.params.vulnerabilities_allowed
 
         logging.debug(
-            f'Tolerance is {self.tolerance_name()} '
-            + f'({self.tolerance_level()})'
+            f'Tolerance is {self.params.tolerance_name} '
+            + f'({self.params.tolerance_level})'
         )
         logging.debug(f"Grype version {grype_data['descriptor']['version']}")
         self.only_fixed()
@@ -163,7 +161,7 @@ class ParseGrypeJSON():
         bool
             True if the ID is found in the allowed list.
         """
-        if vulnerability_id in self.vulnerabilities_allowed_list():
+        if vulnerability_id in self.params.vulnerabilities_allowed:
             allowed = True
         else:
             allowed = False
@@ -203,7 +201,7 @@ class ParseGrypeJSON():
         if self._only_fixed is not None:
             return self._only_fixed
 
-        if 'ONLY_FIXED' in os.environ and os.environ['ONLY_FIXED'] == '1':
+        if self.params.only_fixed:
             mesg = 'Only fixed vulnerabilities will be searched for.'
             self._only_fixed = True
         else:
@@ -237,120 +235,7 @@ class ParseGrypeJSON():
         logging.debug(
             f'Max severity level found was {self.max_severity_level()}.')
 
-        if self.max_severity_level() <= self.tolerance_level():
+        if self.max_severity_level() <= self.params.tolerance_level:
             return 0
         else:
             return self.max_severity_level()
-
-    def show_all(self, show_all=None):
-        """
-        Get or set if we are to show all.
-
-        Parameters
-        ----------
-        show_all : bool, optional
-            Should all vulnerabilities be shown.
-
-        Returns
-        -------
-        bool
-            Should all vulnerabilities be shown.
-        """
-        if show_all is not None:
-            self._show_all = show_all
-        return self._show_all
-
-    def tolerance_level(self, tolerance_level=None):
-        """
-        Get or set the tolerance level.
-
-        Parameters
-        ----------
-        tolerance_level : int, optional
-            The level of tolerance as an integer.
-
-        Returns
-        -------
-        int
-            Retuns the tolerance as an integer.
-        """
-        if tolerance_level is not None:
-            self._tolerance_level = tolerance_level
-        return self._tolerance_level
-
-    def tolerance_name(self, tolerance_name=None):
-        """
-        Get or set the tolerance name.
-
-        This will take the name and set to the tolerance level as well.
-
-        Parameters
-        ----------
-        tolerance_name : str
-            The tolerance name (e.g. CRITICAL).  Must match a value from valid_tolerance_names().
-
-        Raises
-        ------
-            ValueError if the tolerance level is invalid.
-        """
-        if tolerance_name is not None:
-            self._tolerance_name = tolerance_name.capitalize()
-
-            if self._tolerance_name not in self.valid_tolerance_names():
-                raise ValueError(f'Invalid tolerance level {tolerance_name}.')
-
-            level = self.tolerance_name2level(
-                tolerance_name.capitalize())
-            self.tolerance_level(level)
-
-        return self._tolerance_name
-
-    def tolerance_name2level(self, tolerance_name):
-        """
-        Convert a tolerance name string to a tolerance level.
-
-        Returns
-        -------
-        int
-            An integer level representing the tolerance.
-        """
-        tolerance_names = self.valid_tolerance_names()
-
-        for i in range(len(tolerance_names)):
-            if tolerance_name == tolerance_names[i]:
-                return i
-
-        return 0
-
-    def valid_tolerance_names(self):
-        """
-        Return a list of valid tolerance names.
-
-        list of str
-            A list of valid names in order of tolerance from 'Unknown' to
-            'Critical'.
-        """
-        return [
-                    'Unknown',
-                    'Negligible',
-                    'Low',
-                    'Medium',
-                    'High',
-                    'Critical'
-                ]
-
-    def vulnerabilities_allowed_list(self):
-        """
-        Return the list of allowed vulnerabilities.
-
-        Returns
-        -------
-        list of str:
-            The list of allowed vulnerabilities.
-        """
-        if 'VULNERABILITIES_ALLOWED_LIST' in os.environ:
-            return os.environ[
-                'VULNERABILITIES_ALLOWED_LIST'
-            ].split(',')
-        else:
-            return []
