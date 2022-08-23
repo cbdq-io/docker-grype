@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.19.3
+## 1.20.0
+
+### New
+
+* Add the ADD_CPES_IF_NONE option. [Ben Dalling]
+
+### Changes
+
+* Bump the version of Grype from 0.40.1 to 0.47.0. [Ben Dalling]
+
+
+## 1.19.3 (2022-06-28)
 
 ### New
 

@@ -1,5 +1,5 @@
 GRYPE_VERSION = 0.47.0
-TAG = 1.19.3
+TAG = 1.20.0
 
 all: shellcheck lint build test
 
