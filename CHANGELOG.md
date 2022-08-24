@@ -11,6 +11,10 @@
 
 * Bump the version of Grype from 0.40.1 to 0.47.0. [Ben Dalling]
 
+### Other
+
+* Bump the version of Grype from 0.47.0 to 0.48.0. [Ben Dalling]
+
 
 ## 1.19.3 (2022-06-28)
 
