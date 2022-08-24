@@ -28,7 +28,7 @@ services:
       LOG_LEVEL: DEBUG
       ONLY_FIXED: 1
       SHOW_ALL_VULNERABILITIES: 1
-      VULNERABILITIES_ALLOWED_LIST: 'GHSA-c3xm-pvg7-gh7r,GHSA-crp2-qrr5-8pq7,GHSA-fgv8-vj5c-2ppq,GHSA-q3j5-32m5-58c2,GHSA-vjxv-45g9-9296'
+      VULNERABILITIES_ALLOWED_LIST: 'CVE-2021-22570,GHSA-c3xm-pvg7-gh7r,GHSA-crp2-qrr5-8pq7,GHSA-fgv8-vj5c-2ppq,GHSA-q3j5-32m5-58c2,GHSA-vjxv-45g9-9296'
     image: docker-grype:latest
 
   sutA:
@@ -41,7 +41,7 @@ services:
       LOG_LEVEL: DEBUG
       ONLY_FIXED: 1
       SHOW_ALL_VULNERABILITIES: 1
-      VULNERABILITIES_ALLOWED_LIST: 'GHSA-c3xm-pvg7-gh7r,GHSA-crp2-qrr5-8pq7,GHSA-fgv8-vj5c-2ppq,GHSA-q3j5-32m5-58c2,GHSA-vjxv-45g9-9296'
+      VULNERABILITIES_ALLOWED_LIST: 'CVE-2021-22570,GHSA-c3xm-pvg7-gh7r,GHSA-crp2-qrr5-8pq7,GHSA-fgv8-vj5c-2ppq,GHSA-q3j5-32m5-58c2,GHSA-vjxv-45g9-9296'
     image: docker-grype:latest
 
   sutB:
@@ -53,7 +53,7 @@ services:
       IMAGE_NAME: docker-grype:latest
       LOG_LEVEL: DEBUG
       ONLY_FIXED: 1
-      VULNERABILITIES_ALLOWED_LIST: 'GHSA-c3xm-pvg7-gh7r,GHSA-crp2-qrr5-8pq7,GHSA-fgv8-vj5c-2ppq,GHSA-q3j5-32m5-58c2,GHSA-vjxv-45g9-9296'
+      VULNERABILITIES_ALLOWED_LIST: 'CVE-2021-22570,GHSA-c3xm-pvg7-gh7r,GHSA-crp2-qrr5-8pq7,GHSA-fgv8-vj5c-2ppq,GHSA-q3j5-32m5-58c2,GHSA-vjxv-45g9-9296'
     image: docker-grype:latest
 
   sutC:
