@@ -55,6 +55,8 @@ class ParseGrypeJSON():
         if level > self.params.tolerance_level and not allowed:
             add_vulnerability = True
             self.max_severity_level(level)
+        elif allowed:
+            add_vulnerability = True
 
         if add_vulnerability:
             vulnerability = Vulnerability(vulnerability_id)
