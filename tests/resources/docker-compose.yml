@@ -17,6 +17,8 @@ services:
     command: sleep infinity
     container_name: grype
     image: docker-grype:latest
+    volumes:
+      - .:/tmp
 
   sut:
     environment:
