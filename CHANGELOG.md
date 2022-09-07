@@ -9,7 +9,13 @@
 
 ### Changes
 
+* Bump underlying Grype version from 0.48.0 to 0.49.0. [Ben Dalling]
+
 * Bump the version of Grype from 0.40.1 to 0.47.0. [Ben Dalling]
+
+### Fix
+
+* Ensure allowed bugs are registered as found. [Ben Dalling]
 
 ### Other
 
