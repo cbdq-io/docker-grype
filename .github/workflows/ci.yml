@@ -14,6 +14,14 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        include:
+          - scenario: A
+          - scenario: B
+          - scenario: C
+          - scenario: D
+
     steps:
       - uses: actions/checkout@v2
 
@@ -23,7 +31,9 @@ jobs:
           python-version: 3.8
 
       - name: Requirements
-        run: pip install -r requirements.txt
+        run: |
+          pip install -qr requirements.txt
+          pip freeze
 
       - name: Lint
         run: make lint
@@ -38,7 +48,11 @@ jobs:
         run: make build
 
       - name: Test
-        run: make test
+        env:
+          SCENARIO: "${{ matrix.scenario }}"
+        run: |
+          echo "This is scenario ${SCENARIO}."
+          make test-gh
 
       - name: Publish Code Coverage
         uses: paambaati/codeclimate-action@v3.0.0

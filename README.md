@@ -6,6 +6,9 @@ Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker and Provide
 
 ## Environment Variables
 
+- `ADD_CPES_IF_NONE` (_optional_): If set to 1, set the `--add-cpes-if-none`
+  when running the Grype command.  Otherwise the flag will not be set (the
+  default behaviour).
 - `DOCKER_PASSWORD` (_optional_): If used with `DOCKER_USERNAME` (and
   optionally with `DOCKER_SERVER`) will login to Docker to transfer the image
   for scanning.

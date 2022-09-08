@@ -19,6 +19,12 @@ if [ -z "$TOLERATE" ]; then
   export TOLERATE='medium'
 fi
 
+if [[ ( -n "$ADD_CPES_IF_NONE" ) && ( $ADD_CPES_IF_NONE -eq "1" ) ]]; then
+  ADD_CPES_IF_NONE="--add-cpes-if-none"
+else
+  ADD_CPES_IF_NONE=""
+fi
+
 if [[ ( -n "$ONLY_FIXED" ) && ( $ONLY_FIXED -eq "1" ) ]]; then
   ONLY_FIXED="--only-fixed"
 else
@@ -56,4 +62,4 @@ if [ -n "${DOCKER_USERNAME}" ]; then
 fi
 
 # shellcheck disable=SC2086
-/usr/local/bin/grype "$IMAGE_NAME" -o json -v $ONLY_FIXED | /usr/local/bin/parse-grype-json.py
+/usr/local/bin/grype "$IMAGE_NAME" -o json -v $ADD_CPES_IF_NONE $ONLY_FIXED | /usr/local/bin/parse-grype-json.py
