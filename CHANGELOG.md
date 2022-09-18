@@ -9,6 +9,8 @@
 
 ### Other
 
+* Doc: fix: Correct CONTRIBUTING.md. [Ben Dalling]
+
 * Build(deps): bump mako from 1.1.3 to 1.2.2. [dependabot[bot]]
 
   Bumps [mako](https://github.com/sqlalchemy/mako) from 1.1.3 to 1.2.2.
