@@ -1,7 +1,31 @@
 # Changelog
 
 
-## 1.20.0
+## 1.20.1
+
+### Changes
+
+* Bump the underlying Anchore Grype version from 0.49.0 to 0.50.1. [Ben Dalling]
+
+### Other
+
+* Doc: fix: Correct CONTRIBUTING.md. [Ben Dalling]
+
+* Build(deps): bump mako from 1.1.3 to 1.2.2. [dependabot[bot]]
+
+  Bumps [mako](https://github.com/sqlalchemy/mako) from 1.1.3 to 1.2.2.
+  - [Release notes](https://github.com/sqlalchemy/mako/releases)
+  - [Changelog](https://github.com/sqlalchemy/mako/blob/main/CHANGES)
+  - [Commits](https://github.com/sqlalchemy/mako/commits)
+
+  ---
+  updated-dependencies:
+  - dependency-name: mako
+    dependency-type: direct:production
+  ...
+
+
+## 1.20.0 (2022-09-08)
 
 ### New
 

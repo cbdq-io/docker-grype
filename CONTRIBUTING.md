@@ -32,4 +32,3 @@ This will do the following steps:
 
 - Generate the `CHANGELOG.md` file.
 - Add the new file to Git and commit the file.
-- Create a new tag on the Git repository.
