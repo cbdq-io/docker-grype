@@ -27,12 +27,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: '3.x'
 
       - name: Requirements
         run: |
           pip install -qr requirements.txt
           pip freeze
+          pip check
 
       - name: Lint
         run: make lint

@@ -9,9 +9,11 @@ Feature: The Grype Container
 
   Scenario Outline: Test Script Output and Exit Code
     Given the host with URL "docker://grype" is ready
+    And VULNERABILITIES_ALLOWED_LIST="<allowed_list>"
     When the command is "SHOW_ALL_VULNERABILITIES=<show_all> VULNERABILITIES_ALLOWED_LIST=<allowed_list> /usr/local/bin/parse-grype-json.py /tmp/grype.json"
     Then the command return code is <expected_exit_code>
     And the command <stream_name> contains "<expected_string>"
+    And main return code is <expected_exit_code>
     Examples:
       | allowed_list              | show_all | expected_exit_code | stream_name | expected_string                                                |
       |                           | 0        | 5                  | stdout      | CVE-2018-12886,Critical                                        |
