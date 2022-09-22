@@ -7,7 +7,7 @@ from pygrype.params import Params
 from pygrype.parser import ParseGrypeJSON
 
 
-def main(filename: str = sys.argv[1]) -> int:
+def main(filename: str = None) -> int:
     """
     Process a command line request.
 
