@@ -30,11 +30,14 @@ def main(filename: str = None) -> int:
     widget = ParseGrypeJSON(params)
     logging.debug(f'argv {",".join(sys.argv)}')
 
-    if len(filename) > 1:
+    if filename:
         widget.filename(filename)
 
     return widget.report()
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    if len(sys.argv):
+        sys.exit(main(sys.argv[1]))
+    else:
+        sys.exit(main())
