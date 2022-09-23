@@ -1,13 +1,22 @@
 # Changelog
 
 
-## 1.20.1
+## 1.20.2
+
+### Changes
+
+* Bump the underlying version of Grype from 0.50.1 to 0.50.2. [Ben Dalling]
+
+
+## 1.20.1 (2022-09-19)
 
 ### Changes
 
 * Bump the underlying Anchore Grype version from 0.49.0 to 0.50.1. [Ben Dalling]
 
 ### Other
+
+* Bug: fix: Remove vulnerabilities from scenarios that are no longer found. [Ben Dalling]
 
 * Doc: fix: Correct CONTRIBUTING.md. [Ben Dalling]
 

@@ -7,8 +7,20 @@ from pygrype.params import Params
 from pygrype.parser import ParseGrypeJSON
 
 
-def main():
-    """Process a command line request."""
+def main(filename: str = None) -> int:
+    """
+    Process a command line request.
+
+    Parameters
+    ----------
+    filename : str,optional
+        The name of the JSON file to be parsed.
+
+    Returns
+    -------
+    int
+        The return code from ParseGrypeJSON.report().
+    """
     params = Params()
 
     logging.basicConfig(
@@ -18,11 +30,14 @@ def main():
     widget = ParseGrypeJSON(params)
     logging.debug(f'argv {",".join(sys.argv)}')
 
-    if len(sys.argv) > 1:
-        widget.filename(sys.argv[1])
+    if filename:
+        widget.filename(filename)
 
-    sys.exit(widget.report())
+    return widget.report()
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) > 1:
+        sys.exit(main(sys.argv[1]))
+    else:
+        sys.exit(main())
