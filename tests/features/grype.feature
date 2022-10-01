@@ -2,9 +2,10 @@ Feature: The Grype Container
 
   Scenario: Assert the Container is Built as Expected
     Given the host with URL "docker://grype" is ready
+    And the expected Grype version is set
     When the command is "/usr/local/bin/grype version"
     Then the command return code is 0
-    And the command stdout contains "0.50.2"
+    And the command stdout contains the expected value
     And the command stderr is empty
 
   Scenario Outline: Test Script Output and Exit Code
