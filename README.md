@@ -1,6 +1,6 @@
 # docker-grype
 
-[![CI](https://github.com/cbdq-io/docker-grype/actions/workflows/ci.yml/badge.svg)](https://github.com/cbdq-io/docker-grype/actions/workflows/ci.yml)
+[![CD](https://github.com/cbdq-io/docker-grype/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/cbdq-io/docker-grype/actions/workflows/cd.yml)
 
 Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker and Provide Allowed List Functionality
 
