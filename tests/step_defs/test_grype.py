@@ -30,6 +30,12 @@ def vulnerabilities_allowed_list_is_blank():
     return ''
 
 
+@given('the expected Grype version is set', target_fixture='expected_value')
+def the_expected_grype_version_is_set():
+    """the expected Grype version is set."""
+    return os.environ['GRYPE_VERSION']
+
+
 @then(parsers.parse('main return code is {expected_exit_code:d}'))
 def the_command_return_code_is_expected_exit_code(expected_exit_code, vulnerabilities_allowed_list):
     """the command return code is <expected_exit_code>."""
