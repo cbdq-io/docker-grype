@@ -42,7 +42,7 @@ jobs:
         run: bandit -r .
 
       - name: ShellCheck
-        uses: ludeeus/action-shellcheck@master
+        uses: bewuethr/shellcheck-action@v2
 
       - name: Build
         run: make build
