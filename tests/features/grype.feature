@@ -4,7 +4,7 @@ Feature: The Grype Container
     Given the host with URL "docker://grype" is ready
     When the command is "/usr/local/bin/grype version"
     Then the command return code is 0
-    And the command stdout contains "0.50.2"
+    And the command stdout contains "0.52.0"
     And the command stderr is empty
 
   Scenario Outline: Test Script Output and Exit Code

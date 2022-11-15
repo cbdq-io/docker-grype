@@ -172,7 +172,12 @@ if 'GITHUB_EVENT_NAME' in os.environ:
 else:
     github_event_name = None
 
-if github_event_name == 'pull_request':
+if 'GITHUB_REF_NAME' in os.environ:
+    github_ref_name = os.environ['GITHUB_REF_NAME']
+else:
+    github_ref_name = None
+
+if github_event_name == 'pull_request' and github_ref_name == 'master':
     http = urllib3.PoolManager()
     url = f'https://api.github.com/repos/{os.environ["GITHUB_REPOSITORY"]}/tags'
     r = http.request('GET', url)

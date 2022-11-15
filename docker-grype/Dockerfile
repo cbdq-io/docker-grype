@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.11
 ARG GRYPE_VERSION
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -38,6 +38,7 @@ RUN apt-get clean \
        libpq-dev \
        libpython2.7-minimal \
        libpython2.7-stdlib \
+       libpython3.9-minimal \
        libwebp-dev \
        libxml2 \
        linux-libc-dev \
@@ -51,6 +52,6 @@ RUN apt-get clean \
 
 COPY docker-grype-cmd.sh /usr/local/bin/docker-grype-cmd.sh
 COPY parse-grype-json.py /usr/local/bin/parse-grype-json.py
-COPY pygrype /usr/local/lib/python3.10/pygrype
+COPY pygrype /usr/local/lib/python3.11/pygrype
 
 CMD ["/usr/local/bin/docker-grype-cmd.sh"]
