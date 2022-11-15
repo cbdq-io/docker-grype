@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.20.3
+## 1.20.4
+
+### Changes
+
+* Bump underlying Grype version from 0.50.2 to 0.52.0. [Ben Dalling]
+
+
+## 1.20.3 (2022-10-18)
 
 ### Changes
 
