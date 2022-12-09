@@ -1,7 +1,30 @@
 # Changelog
 
 
-## 1.20.4
+## 1.20.5
+
+### Changes
+
+* Migrate from Docker Hub to GitHub Container Registry. [Ben Dalling]
+
+* Bump Grype from 0.52.0 to 0.53.1. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump certifi from 2022.9.24 to 2022.12.7. [dependabot[bot]]
+
+  Bumps [certifi](https://github.com/certifi/python-certifi) from 2022.9.24 to 2022.12.7.
+  - [Release notes](https://github.com/certifi/python-certifi/releases)
+  - [Commits](https://github.com/certifi/python-certifi/compare/2022.09.24...2022.12.07)
+
+  ---
+  updated-dependencies:
+  - dependency-name: certifi
+    dependency-type: direct:production
+  ...
+
+
+## 1.20.4 (2022-11-15)
 
 ### Changes
 
