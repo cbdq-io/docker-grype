@@ -3,7 +3,7 @@ TAG = 1.20.5
 
 all: shellcheck lint build test
 
-build: changelog
+build:
 	docker build -f docker-grype/Dockerfile \
 	  --no-cache \
 	  -t ghcr.io/cbdq-io/docker-grype:$(TAG) \
