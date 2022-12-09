@@ -25,10 +25,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Push
-        run: make build test push
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: make build test push_latest
 
       - name: Create Tag
         run: |

@@ -4,6 +4,9 @@ ARG GRYPE_VERSION
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
+LABEL org.opencontainers.image.source=https://github.com/cbdq-io/docker-grype
+LABEL org.opencontainers.image.description="Wrap Anchore Grype Inside Docker"
+LABEL org.opencontainers.image.licenses=Apache-2.0
 
 # hadolint ignore=DL3008
 RUN apt-get clean \

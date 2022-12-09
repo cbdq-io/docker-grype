@@ -33,10 +33,12 @@ lint:
 	flake8
 	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
 
-push:
-	echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-	docker push cbdq/docker-grype:$(TAG)
-	docker push cbdq/docker-grype:latest
+push_latest:
+	docker push ghcr.io/cbdq-io/docker-grype:$(TAG)
+	docker push ghcr.io/cbdq-io/docker-grype:latest
+
+push_unstable:
+	docker push ghcr.io/cbdq-io/docker-grype:unstable
 
 shellcheck:
 	shellcheck docker-grype/docker-grype-cmd.sh
