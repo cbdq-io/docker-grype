@@ -25,7 +25,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Push
-        run: make build test push_latest
+        run: make build push_latest
 
       - name: Create Tag
         run: |

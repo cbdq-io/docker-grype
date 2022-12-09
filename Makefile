@@ -6,8 +6,9 @@ all: shellcheck lint build test
 build: changelog
 	docker build -f docker-grype/Dockerfile \
 	  --no-cache \
-	  -t cbdq/docker-grype:$(TAG) \
-	  -t cbdq/docker-grype:latest \
+	  -t ghcr.io/cbdq-io/docker-grype:$(TAG) \
+	  -t ghcr.io/cbdq-io/docker-grype:latest \
+	  -t ghcr.io/cbdq-io/docker-grype:unstable \
 	  -t docker-grype:$(TAG) \
 	  -t docker-grype:latest \
 	  --build-arg GRYPE_VERSION=$(GRYPE_VERSION) \

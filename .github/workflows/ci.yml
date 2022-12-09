@@ -82,5 +82,5 @@ jobs:
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
 
       - name: Push
-        run: make build test push_unstable
+        run: make build push_unstable
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
