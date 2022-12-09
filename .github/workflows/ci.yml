@@ -62,3 +62,25 @@ jobs:
           coverageCommand: coverage xml
           coverageLocations: |
             ${{github.workspace}}/coverage.xml:coverage.py
+
+  push:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v3.1.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
+
+      - name: Requirements
+        run: pip install -r requirements.txt
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
+
+      - name: Push
+        run: make build test push_unstable
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
