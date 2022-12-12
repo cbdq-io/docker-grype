@@ -1,13 +1,14 @@
-GRYPE_VERSION = 0.52.0
-TAG = 1.20.4
+GRYPE_VERSION = 0.53.1
+TAG = 1.20.5
 
 all: shellcheck lint build test
 
-build: changelog
+build:
 	docker build -f docker-grype/Dockerfile \
 	  --no-cache \
-	  -t cbdq/docker-grype:$(TAG) \
-	  -t cbdq/docker-grype:latest \
+	  -t ghcr.io/cbdq-io/docker-grype:$(TAG) \
+	  -t ghcr.io/cbdq-io/docker-grype:latest \
+	  -t ghcr.io/cbdq-io/docker-grype:unstable \
 	  -t docker-grype:$(TAG) \
 	  -t docker-grype:latest \
 	  --build-arg GRYPE_VERSION=$(GRYPE_VERSION) \
@@ -33,10 +34,12 @@ lint:
 	flake8
 	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
 
-push:
-	echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
-	docker push cbdq/docker-grype:$(TAG)
-	docker push cbdq/docker-grype:latest
+push_latest:
+	docker push ghcr.io/cbdq-io/docker-grype:$(TAG)
+	docker push ghcr.io/cbdq-io/docker-grype:latest
+
+push_unstable:
+	docker push ghcr.io/cbdq-io/docker-grype:unstable
 
 shellcheck:
 	shellcheck docker-grype/docker-grype-cmd.sh

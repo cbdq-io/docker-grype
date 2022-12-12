@@ -5,19 +5,12 @@ on:
   push:
     branches:
       - main
-  schedule:
-    #        ┌───────────── minute (0 - 59)
-    #        │ ┌───────────── hour (0 - 23)
-    #        │ │ ┌───────────── day of the month (1 - 31)
-    #        │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
-    #        │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
-    #        │ │ │ │ │
-    #        │ │ │ │ │
-    #        │ │ │ │ │
-    - cron: '0 0 1 * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
   push:
@@ -26,19 +19,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3.1.0
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Log in to the Container Registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
-          python-version: '3.11'
-
-      - name: Requirements
-        run: pip install -r requirements.txt
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push
-        run: make build test push
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: make build push_latest
 
       - name: Create Tag
         run: |
