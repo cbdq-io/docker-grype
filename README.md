@@ -63,7 +63,7 @@ services:
       DOCKER_PASSWORD: "${DOCKER_PASSWORD-}"
       DOCKER_USERNAME: "${DOCKER_USERNAME-}"
       IMAGE_NAME: hello-world:latest
-    image: cbdq/docker-grype:latest
+    image: ghcr.io/cbdq-io/docker-grype:latest
     volumes:
       # This will persist the Grype DB so that it will
       # not need to be downloaded for each invocation.
@@ -100,6 +100,6 @@ steps:
     environment:
       DOCKER_HOST: tcp://docker:2375
       IMAGE_NAME: my-image:latest
-    image: cbdq/docker-grype:latest
+    image: ghcr.io/cbdq-io/docker-grype:latest
     pull: if-not-exists
 ```
