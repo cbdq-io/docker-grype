@@ -1,5 +1,5 @@
-GRYPE_VERSION = 0.53.1
-TAG = 1.20.5
+GRYPE_VERSION = 0.54.0
+TAG = 1.20.6
 
 all: shellcheck lint build test
 
@@ -32,6 +32,7 @@ cleanall: clean
 lint:
 	yamllint -s .
 	flake8
+	bandit --ini setup.cfg -r .
 	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
 
 push_latest:
