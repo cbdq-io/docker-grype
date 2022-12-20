@@ -32,6 +32,7 @@ cleanall: clean
 lint:
 	yamllint -s .
 	flake8
+	bandit --ini setup.cfg -r .
 	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
 
 push_latest:
