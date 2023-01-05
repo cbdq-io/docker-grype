@@ -51,6 +51,7 @@ RUN apt-get clean \
     && apt-get -y autoremove --purge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
+    && pip --no-cache-dir install -U 'setuptools>=65.5.1' \
     && pip uninstall -y pip
 
 COPY docker-grype-cmd.sh /usr/local/bin/docker-grype-cmd.sh
