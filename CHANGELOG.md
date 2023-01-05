@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.20.6
+## 1.20.7
+
+### Changes
+
+* Bump Grype from 0.54.0 to 0.55.0. [Ben Dalling]
+
+### Fix
+
+* Resolve GHSA-r9hx-vwmv-q579/CVE-2022-40897. [Ben Dalling]
+
+
+## 1.20.6 (2022-12-20)
 
 ### Changes
 
