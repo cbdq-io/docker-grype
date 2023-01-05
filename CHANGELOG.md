@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.20.5
+## 1.20.6
+
+### Changes
+
+* Bump Grype version from 0.53.1 to 0.54.0. [Ben Dalling]
+
+### Fix
+
+* Remove CVE-2021-46848 from the non-fixed, allowed vulnerability list. [Ben Dalling]
+
+
+## 1.20.5 (2022-12-12)
 
 ### Changes
 
