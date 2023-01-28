@@ -24,9 +24,10 @@ RUN apt-get clean \
        $(lsb_release -cs) \
        stable" \
     && apt-get update \
-    && apt-get upgrade -y libssl-dev \
-    && apt-get install -y --no-install-recommends \
+    && apt-get upgrade -y \
        bash \
+       libssl-dev \
+    && apt-get install -y --no-install-recommends \
        docker-ce \
        docker-ce-cli \
        containerd.io \
