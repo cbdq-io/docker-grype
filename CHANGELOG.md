@@ -1,7 +1,14 @@
 # Changelog
 
 
-## 1.20.7
+## 1.20.8
+
+### Changes
+
+* Bump Grype version from 0.55.0 to 0.56.0. [Ben Dalling]
+
+
+## 1.20.7 (2023-01-05)
 
 ### Changes
 
