@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.20.7
+## 1.20.8
+
+### Changes
+
+* Bump Grype version from 0.55.0 to 0.56.0. [Ben Dalling]
+
+### Fix
+
+* CVE-2015-5237 & CVE-2021-22570 are resolved. [Ben Dalling]
+
+
+## 1.20.7 (2023-01-05)
 
 ### Changes
 
