@@ -7,18 +7,31 @@ services:
     environment:
       DOCKER_TLS_CERTDIR: ""
     image: docker:dind
+    healthcheck:
+      test: ["CMD-SHELL", "docker", "ps"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     privileged: yes
     volumes:
-      - certs:/certs/client
       - ../..:/work
     working_dir: /work
 
   grype:
     command: sleep infinity
     container_name: grype
+    environment:
+      DOCKER_HOST: tcp://docker:2375
+      DOCKER_TLS_CERTDIR: ""
     image: docker-grype:latest
+    healthcheck:
+      test: ["CMD-SHELL", "docker", "ps"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
     volumes:
       - .:/tmp
+
 
   sut:
     environment:
@@ -79,6 +92,3 @@ services:
       LOG_LEVEL: DEBUG
       VULNERABILITIES_ALLOWED_LIST: 'CVE-2019-8457,CVE-2020-16156,CVE-2021-3826,CVE-2021-33560,CVE-2022-1304,CVE-2022-2097,CVE-2022-3715,CVE-2022-29458'
     image: docker-grype:latest
-
-volumes:
-  certs:

@@ -49,13 +49,13 @@ tag:
 	git tag $(TAG)
 
 test:
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml up -d docker grype
+	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml up -d --wait docker grype
 	GRYPE_VERSION=$(GRYPE_VERSION) PYTHONPATH=.:docker-grype pytest --cov -o cache_dir=/tmp/.pycache -v tests
 	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest --build-arg GRYPE_VERSION=$(GRYPE_VERSION) --quiet ./docker-grype
 	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml run --rm sut
 
 test-gh:
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml up -d docker grype
+	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml up -d --wait docker grype
 	GRYPE_VERSION=$(GRYPE_VERSION) PYTHONPATH=.:docker-grype pytest --cov -o cache_dir=/tmp/.pycache -v tests
 	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest --build-arg GRYPE_VERSION=$(GRYPE_VERSION) --quiet ./docker-grype
 	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml run --rm sut${SCENARIO}
