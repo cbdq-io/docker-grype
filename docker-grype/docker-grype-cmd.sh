@@ -19,13 +19,13 @@ if [ -z "$TOLERATE" ]; then
   export TOLERATE='medium'
 fi
 
-if [[ ( -n "$ADD_CPES_IF_NONE" ) && ( $ADD_CPES_IF_NONE -eq "1" ) ]]; then
+if [[ ( -n "$ADD_CPES_IF_NONE" ) && ( $ADD_CPES_IF_NONE -eq "1" || $ADD_CPES_IF_NONE == 1 ) ]]; then
   ADD_CPES_IF_NONE="--add-cpes-if-none"
 else
   ADD_CPES_IF_NONE=""
 fi
 
-if [[ ( -n "$ONLY_FIXED" ) && ( $ONLY_FIXED -eq "1" ) ]]; then
+if [[ ( -n "$ONLY_FIXED" ) && ( $ONLY_FIXED -eq "1" || $ONLY_FIXED == 1 ) ]]; then
   ONLY_FIXED="--only-fixed"
 else
   ONLY_FIXED=""
