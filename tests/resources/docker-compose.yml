@@ -43,7 +43,7 @@ services:
       LOG_LEVEL: DEBUG
       ONLY_FIXED: 1
       SHOW_ALL_VULNERABILITIES: 1
-      VULNERABILITIES_ALLOWED_LIST: ''
+      VULNERABILITIES_ALLOWED_LIST: 'GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,GHSA-83g2-8m93-v3w7,GHSA-fxg5-wq6x-vr4w,GHSA-p782-xgp4-8hr8,GHSA-r48q-9g5r-8q2h'
     image: docker-grype:latest
 
   sutA:
