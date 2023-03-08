@@ -40,6 +40,7 @@ RUN apt-get clean \
        libcurl3-gnutls \
        libcurl4 \
        libopenjp2-7 \
+       libperl5.32 \
        libp11-kit-dev \
        libpq5 \
        libpq-dev \

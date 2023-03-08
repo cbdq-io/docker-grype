@@ -193,7 +193,7 @@ class ParseGrypeJSON():
         Returns
         -------
         bool
-            True of only flagging fixed vulnerabilities.  False if checking all vulnerabilities.
+            True if only flagging fixed vulnerabilities.  False if checking all vulnerabilities.
         """
         if self._only_fixed is not None:
             return self._only_fixed

@@ -1,4 +1,4 @@
-GRYPE_VERSION = 0.56.0
+GRYPE_VERSION = 0.59.0
 TAG = 1.20.8
 
 all: shellcheck lint build test
@@ -23,8 +23,8 @@ changelog:
 	UNRELEASED_VERSION_LABEL=$(TAG) gitchangelog > CHANGELOG.md
 
 clean:
-	docker-compose -f tests/resources/docker-compose.yml down -t 0
-	docker-compose -f tests/resources/docker-compose-self-test.yml down -t 0
+	docker compose -f tests/resources/docker-compose.yml down -t 0
+	docker compose -f tests/resources/docker-compose-self-test.yml down -t 0
 
 cleanall: clean
 	docker system prune --force --volumes
@@ -49,13 +49,13 @@ tag:
 	git tag $(TAG)
 
 test:
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml up -d docker grype
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f tests/resources/docker-compose.yml up -d --wait docker grype
 	GRYPE_VERSION=$(GRYPE_VERSION) PYTHONPATH=.:docker-grype pytest --cov -o cache_dir=/tmp/.pycache -v tests
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest --build-arg GRYPE_VERSION=$(GRYPE_VERSION) --quiet ./docker-grype
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml run --rm sut
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest --build-arg GRYPE_VERSION=$(GRYPE_VERSION) --quiet ./docker-grype
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f tests/resources/docker-compose.yml run --rm sut
 
 test-gh:
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml up -d docker grype
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f tests/resources/docker-compose.yml up -d --wait docker grype
 	GRYPE_VERSION=$(GRYPE_VERSION) PYTHONPATH=.:docker-grype pytest --cov -o cache_dir=/tmp/.pycache -v tests
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest --build-arg GRYPE_VERSION=$(GRYPE_VERSION) --quiet ./docker-grype
-	GRYPE_VERSION=$(GRYPE_VERSION) docker-compose -f tests/resources/docker-compose.yml run --rm sut${SCENARIO}
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f tests/resources/docker-compose.yml exec -T docker docker build -t docker-grype:latest --build-arg GRYPE_VERSION=$(GRYPE_VERSION) --quiet ./docker-grype
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f tests/resources/docker-compose.yml run --rm sut${SCENARIO}

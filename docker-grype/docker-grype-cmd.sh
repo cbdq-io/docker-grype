@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+GRYPE_ARGS='-o json -v'
 
 if [ -z "$IMAGE_NAME" ]; then
   echo 'ERROR: The IMAGE_NAME environment variable is not set.'
@@ -19,16 +20,12 @@ if [ -z "$TOLERATE" ]; then
   export TOLERATE='medium'
 fi
 
-if [[ ( -n "$ADD_CPES_IF_NONE" ) && ( $ADD_CPES_IF_NONE -eq "1" ) ]]; then
-  ADD_CPES_IF_NONE="--add-cpes-if-none"
-else
-  ADD_CPES_IF_NONE=""
+if [[ ( -n "$ADD_CPES_IF_NONE" ) && ( $ADD_CPES_IF_NONE -eq "1" || $ADD_CPES_IF_NONE == 1 ) ]]; then
+  GRYPE_ARGS="${GRYPE_ARGS} --add-cpes-if-none"
 fi
 
-if [[ ( -n "$ONLY_FIXED" ) && ( $ONLY_FIXED -eq "1" ) ]]; then
-  ONLY_FIXED="--only-fixed"
-else
-  ONLY_FIXED=""
+if [[ ( -n "$ONLY_FIXED" ) && ( $ONLY_FIXED -eq "1" || $ONLY_FIXED == 1 ) ]]; then
+  GRYPE_ARGS="${GRYPE_ARGS} --only-fixed"
 fi
 
 docker_available=0
@@ -62,4 +59,4 @@ if [ -n "${DOCKER_USERNAME}" ]; then
 fi
 
 # shellcheck disable=SC2086
-/usr/local/bin/grype "$IMAGE_NAME" -o json -v $ADD_CPES_IF_NONE $ONLY_FIXED | /usr/local/bin/parse-grype-json.py
+/usr/local/bin/grype "$IMAGE_NAME" $GRYPE_ARGS | /usr/local/bin/parse-grype-json.py

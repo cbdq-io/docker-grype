@@ -47,6 +47,9 @@ jobs:
       - name: ShellCheck
         uses: bewuethr/shellcheck-action@v2
 
+      - name: Docker Version
+        run: docker --version
+
       - name: Build
         run: make build
 

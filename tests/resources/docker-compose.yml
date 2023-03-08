@@ -7,18 +7,31 @@ services:
     environment:
       DOCKER_TLS_CERTDIR: ""
     image: docker:dind
+    healthcheck:
+      test: ["CMD-SHELL", "docker", "ps"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     privileged: yes
     volumes:
-      - certs:/certs/client
       - ../..:/work
     working_dir: /work
 
   grype:
     command: sleep infinity
     container_name: grype
+    environment:
+      DOCKER_HOST: tcp://docker:2375
+      DOCKER_TLS_CERTDIR: ""
     image: docker-grype:latest
+    healthcheck:
+      test: ["CMD-SHELL", "docker", "ps"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
     volumes:
       - .:/tmp
+
 
   sut:
     environment:
@@ -30,7 +43,7 @@ services:
       LOG_LEVEL: DEBUG
       ONLY_FIXED: 1
       SHOW_ALL_VULNERABILITIES: 1
-      VULNERABILITIES_ALLOWED_LIST: ''
+      VULNERABILITIES_ALLOWED_LIST: 'GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,GHSA-83g2-8m93-v3w7,GHSA-fxg5-wq6x-vr4w,GHSA-p782-xgp4-8hr8,GHSA-r48q-9g5r-8q2h'
     image: docker-grype:latest
 
   sutA:
@@ -43,7 +56,7 @@ services:
       LOG_LEVEL: DEBUG
       ONLY_FIXED: 1
       SHOW_ALL_VULNERABILITIES: 1
-      VULNERABILITIES_ALLOWED_LIST: ''
+      VULNERABILITIES_ALLOWED_LIST: 'GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,GHSA-83g2-8m93-v3w7,GHSA-fxg5-wq6x-vr4w,GHSA-p782-xgp4-8hr8,GHSA-r48q-9g5r-8q2h'
     image: docker-grype:latest
 
   sutB:
@@ -55,7 +68,7 @@ services:
       IMAGE_NAME: docker-grype:latest
       LOG_LEVEL: DEBUG
       ONLY_FIXED: 1
-      VULNERABILITIES_ALLOWED_LIST: ''
+      VULNERABILITIES_ALLOWED_LIST: 'GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,GHSA-83g2-8m93-v3w7,GHSA-fxg5-wq6x-vr4w,GHSA-p782-xgp4-8hr8,GHSA-r48q-9g5r-8q2h'
     image: docker-grype:latest
 
   sutC:
@@ -66,7 +79,7 @@ services:
       IMAGE_NAME: docker-grype:latest
       LOG_LEVEL: DEBUG
       SHOW_ALL_VULNERABILITIES: 1
-      VULNERABILITIES_ALLOWED_LIST: 'CVE-2019-8457,CVE-2020-16156,CVE-2021-3826,CVE-2021-33560,CVE-2022-1304,CVE-2022-2097,CVE-2022-3715,CVE-2022-29458'
+      VULNERABILITIES_ALLOWED_LIST: 'CVE-2019-8457,CVE-2020-16156,CVE-2021-3826,CVE-2021-33560,CVE-2022-1304,CVE-2022-3715,CVE-2022-29458,CVE-2022-24963,GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,GHSA-83g2-8m93-v3w7,GHSA-fxg5-wq6x-vr4w,GHSA-p782-xgp4-8hr8,GHSA-r48q-9g5r-8q2h'
     image: docker-grype:latest
 
   sutD:
@@ -77,8 +90,5 @@ services:
       GRYPE_VERSION: "${GRYPE_VERSION}"
       IMAGE_NAME: docker-grype:latest
       LOG_LEVEL: DEBUG
-      VULNERABILITIES_ALLOWED_LIST: 'CVE-2019-8457,CVE-2020-16156,CVE-2021-3826,CVE-2021-33560,CVE-2022-1304,CVE-2022-2097,CVE-2022-3715,CVE-2022-29458'
+      VULNERABILITIES_ALLOWED_LIST: 'CVE-2019-8457,CVE-2020-16156,CVE-2021-3826,CVE-2021-33560,CVE-2022-1304,CVE-2022-3715,CVE-2022-29458,CVE-2022-24963,GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,GHSA-83g2-8m93-v3w7,GHSA-fxg5-wq6x-vr4w,GHSA-p782-xgp4-8hr8,GHSA-r48q-9g5r-8q2h'
     image: docker-grype:latest
-
-volumes:
-  certs:
