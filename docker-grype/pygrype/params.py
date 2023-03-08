@@ -70,4 +70,5 @@ class Params:
         """
         if key_name in os.environ:
             return os.environ[key_name]
+
         return default_value
