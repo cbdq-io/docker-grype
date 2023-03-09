@@ -1,7 +1,26 @@
 # Changelog
 
 
-## 1.20.8
+## 1.20.9
+
+### Changes
+
+* Bump Grype version from 0.56.0 to 0.59.0. [Ben Dalling]
+
+### Fix
+
+* Correct false reporting of if fixed vulnerabilities are being checked. [Ben Dalling]
+
+* Remove libperl5.32 from the build (CVE-2020-16156). [Ben Dalling]
+
+* CVE-2022-2097 is no longer found. [Ben Dalling]
+
+* Add vulnerabilities to the allowed list for Grype itself. [Ben Dalling]
+
+* Make CLI interpretation more flexible. [Ben Dalling]
+
+
+## 1.20.8 (2023-01-30)
 
 ### Changes
 
