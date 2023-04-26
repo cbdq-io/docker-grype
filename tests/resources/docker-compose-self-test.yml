@@ -15,7 +15,7 @@ services:
     environment:
       DOCKER_TLS_CERTDIR: ""
     image: docker:dind
-    privileged: yes
+    privileged: true
     volumes:
       - "../../docker-grype:/mnt/docker-grype:ro"
 

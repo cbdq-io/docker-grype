@@ -1,4 +1,4 @@
-GRYPE_VERSION = 0.59.0
+GRYPE_VERSION = 0.61.1
 TAG = 1.20.9
 
 all: shellcheck lint build test
@@ -34,6 +34,9 @@ lint:
 	flake8
 	bandit --ini setup.cfg -r .
 	docker run --rm -i hadolint/hadolint < docker-grype/Dockerfile
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f tests/resources/docker-compose.yml config --quiet
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f ./tests/resources/docker-compose-self-test.yml config --quiet
+	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f ./examples/docker-compose.yml config --quiet
 
 push_latest:
 	docker push ghcr.io/cbdq-io/docker-grype:$(TAG)
