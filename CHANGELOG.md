@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 1.20.9
+## 1.20.10
+
+### Changes
+
+* Bump the underlying Grype version from 0.59.0 to 0.61.1. [Ben Dalling]
+
+### Fix
+
+* Add GHSA-vvpx-j8f3-3w6h to the allowed list. [Ben Dalling]
+
+
+## 1.20.9 (2023-03-09)
 
 ### Changes
 
