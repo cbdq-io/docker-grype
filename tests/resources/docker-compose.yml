@@ -12,7 +12,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    privileged: yes
+    privileged: true
     volumes:
       - ../..:/work
     working_dir: /work
