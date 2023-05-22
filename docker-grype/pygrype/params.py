@@ -49,7 +49,7 @@ class Params:
 
         vulnerabilities_allowed_list = []
 
-        for vulnerability_id in self.get_environment_value('VULNERABILITIES_ALLOWED_LIST', '').split(','):
+        for vulnerability_id in os.environ.get('VULNERABILITIES_ALLOWED_LIST', '').split(','):
             vulnerability_id = vulnerability_id.strip()
 
             if vulnerability_id:
