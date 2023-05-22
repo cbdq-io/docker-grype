@@ -1,7 +1,26 @@
 # Changelog
 
 
-## 1.20.10
+## 1.21.0
+
+### New
+
+* Add --by-cve flags. [Ben Dalling]
+
+### Changes
+
+* Bump Anchore Grype from 0.61.1 to 0.62.0. [Ben Dalling]
+
+### Fix
+
+* GHSA-p782-xgp4-8hr8 no longer found in any test scenario. [Ben Dalling]
+
+* GHSA-83g2-8m93-v3w7 no longer found in any test scenario. [Ben Dalling]
+
+* Update docker/login-action version tag. [Ben Dalling]
+
+
+## 1.20.10 (2023-04-26)
 
 ### Changes
 
