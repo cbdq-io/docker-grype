@@ -69,7 +69,7 @@ services:
       IMAGE_NAME: docker-grype:latest
       LOG_LEVEL: DEBUG
       ONLY_FIXED: 1
-      VULNERABILITIES_ALLOWED_LIST: 'GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,GHSA-fxg5-wq6x-vr4w,GHSA-r48q-9g5r-8q2h,GHSA-vvpx-j8f3-3w6h'
+      VULNERABILITIES_ALLOWED_LIST: 'CVE-2022-41723'
     image: docker-grype:latest
 
   sutC:
