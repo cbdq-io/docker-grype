@@ -28,6 +28,10 @@ if [[ ( -n "$ONLY_FIXED" ) && ( $ONLY_FIXED -eq "1" || $ONLY_FIXED == 1 ) ]]; th
   GRYPE_ARGS="${GRYPE_ARGS} --only-fixed"
 fi
 
+if [[ ( -n "$BY_CVE" ) && ( $BY_CVE -eq "1" || $BY_CVE == 1 ) ]]; then
+  GRYPE_ARGS="${GRYPE_ARGS} --by-cve"
+fi
+
 docker_available=0
 attempts=5
 sleep_time=1

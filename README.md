@@ -7,8 +7,13 @@ Wrap [Anchore Grype](https://github.com/anchore/grype) Inside Docker and Provide
 ## Environment Variables
 
 - `ADD_CPES_IF_NONE` (_optional_): If set to 1, set the `--add-cpes-if-none`
-  when running the Grype command.  Otherwise the flag will not be set (the
-  default behaviour).
+  when running the Grype command.  By default, this flag will not be set.
+- `BY_CVE` (_optional_): If set to 1, set the `--by-cve` flag when
+  running the Grype command.  This will orient results by CVE instead of the
+  original vulnerability ID when possible.  A possibly unwanted side affect
+  of using this flag will be replacing non-CVE vulnerabilities with the CVE
+  equivalent as they become available.  By default, this flag will not be
+  set.
 - `DOCKER_PASSWORD` (_optional_): If used with `DOCKER_USERNAME` (and
   optionally with `DOCKER_SERVER`) will login to Docker to transfer the image
   for scanning.
