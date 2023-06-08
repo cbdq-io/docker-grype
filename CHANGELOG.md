@@ -1,7 +1,21 @@
 # Changelog
 
 
-## 1.21.0
+## 1.21.1
+
+### Changes
+
+* Bump Anchore Grype from 0.62.1 to 0.62.3. [Ben Dalling]
+
+
+## 1.21.1 (2023-05-26)
+
+### Changes
+
+* Bump Anchore Grype from 0.62.0 to 0.62.1. [Ben Dalling]
+
+
+## 1.21.0 (2023-05-22)
 
 ### New
 
