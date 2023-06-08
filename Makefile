@@ -1,5 +1,5 @@
 GRYPE_VERSION = 0.62.3
-TAG = 1.21.1
+TAG = 1.21.2
 
 all: shellcheck lint build test
 
@@ -50,6 +50,9 @@ shellcheck:
 
 tag:
 	git tag $(TAG)
+	git push --tags
+	git checkout -b feature/post-$(TAG)-release
+	git push --set-upstream origin feature/post-$(TAG)-release
 
 test:
 	GRYPE_VERSION=$(GRYPE_VERSION) docker compose -f tests/resources/docker-compose.yml up -d --wait docker grype
