@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.21.2
+
+### Changes
+
+* Bump Anchore Grype version from 0.62.1 to 0.62.3. [Ben Dalling]
+
+
 ## 1.21.1 (2023-05-26)
 
 ### Changes
