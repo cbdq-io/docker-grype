@@ -12,7 +12,6 @@ build:
 	  -t docker-grype:$(TAG) \
 	  -t docker-grype:latest \
 	  --build-arg GRYPE_VERSION=$(GRYPE_VERSION) \
-          --quiet \
 	  docker-grype
 
 bump_version: changelog
