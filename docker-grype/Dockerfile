@@ -38,13 +38,10 @@ RUN apt-get clean \
        libcurl3-gnutls \
        libcurl4 \
        libopenjp2-7 \
-       libperl5.32 \
+       libperl5.36 \
        libp11-kit-dev \
        libpq5 \
        libpq-dev \
-       libpython2.7-minimal \
-       libpython2.7-stdlib \
-       libpython3.9-minimal \
        libwebp-dev \
        libxml2 \
        linux-libc-dev \
