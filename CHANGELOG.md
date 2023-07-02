@@ -1,11 +1,19 @@
 # Changelog
 
 
-## 1.21.2
+## 1.21.3
 
 ### Changes
 
+* Bump Grype version from 0.62.3 to 0.63.1. [Ben Dalling]
+
+* Bump Anchore Grype from 0.62.1 to 0.62.3. [Ben Dalling]
+
 * Bump Anchore Grype version from 0.62.1 to 0.62.3. [Ben Dalling]
+
+### Fix
+
+* Update the Docker installation method on the image. [Ben Dalling]
 
 
 ## 1.21.1 (2023-05-26)
