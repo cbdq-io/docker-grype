@@ -1,5 +1,5 @@
-GRYPE_VERSION = 0.62.1
-TAG = 1.21.2
+GRYPE_VERSION = 0.63.1
+TAG = 1.21.3
 
 all: shellcheck lint build test
 
@@ -12,7 +12,6 @@ build:
 	  -t docker-grype:$(TAG) \
 	  -t docker-grype:latest \
 	  --build-arg GRYPE_VERSION=$(GRYPE_VERSION) \
-          --quiet \
 	  docker-grype
 
 bump_version: changelog
