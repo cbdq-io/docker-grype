@@ -46,8 +46,6 @@ RUN apt-get clean \
        libxml2 \
        linux-libc-dev \
        openssh-client \
-       python2.7 \
-       python2.7-minimal \
     && apt-get -y autoremove --purge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
