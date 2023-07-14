@@ -26,7 +26,7 @@ class ParseGrypeJSON():
 
         self.params = params
 
-    def analyse_a_vulnerability(self, artifact, matched_vulnerability):
+    def analyse_a_vulnerability(self, artifact, matched_vulnerability, related_vulnerabilities):
         """
         Analyse a matched vulnerability.
 
@@ -38,6 +38,9 @@ class ParseGrypeJSON():
             A dictionary representing the artifact.
         matched_vulnerability : dict
             A dictionary representing a single vulnerability.
+        related_vulnerabilities: list
+            If by-cve, this contains details on original or related
+            vulnerabilities.
 
         Returns
         -------
@@ -47,7 +50,7 @@ class ParseGrypeJSON():
         vulnerability_name = artifact['name']
         vulnerability_installed = artifact['version']
         vulnerability_id = matched_vulnerability['id']
-        vulnerability_severity = matched_vulnerability['severity']
+        vulnerability_severity = self.get_severity(matched_vulnerability, related_vulnerabilities)
         level = severity_name_to_level(vulnerability_severity)
         allowed = self.is_vulnerability_allowed(vulnerability_id)
         add_vulnerability = self.params.show_all_vulnerabilities
@@ -95,7 +98,12 @@ class ParseGrypeJSON():
         for match in grype_data['matches']:
             artifact = match['artifact']
             matched_vulnerability = match['vulnerability']
-            vulnerability = self.analyse_a_vulnerability(artifact, matched_vulnerability)
+            related_vulnerabilities = match['related_vulnerabilities']
+            vulnerability = self.analyse_a_vulnerability(
+                artifact,
+                matched_vulnerability,
+                related_vulnerabilities
+            )
 
             if not vulnerability:
                 continue
@@ -143,6 +151,32 @@ class ParseGrypeJSON():
             self._filename = filename
 
         return self._filename
+
+    def get_severity(self, matched_vulnerability: dict, related_vulnerabilities: list):
+        """
+        Get the severity name from the matched or related vulnerabilities.
+
+        Parameters
+        ----------
+        matched_vulnerability : dict
+            _description_
+        related_vulnerabilities : list
+            _description_
+
+        Returns
+        -------
+        str
+            The severity level from the matched vulnerability, or if required the
+            related_vulnerabilities.
+        """
+        severity_name = 'Unknown'
+
+        if 'severity' in matched_vulnerability:
+            severity_name = matched_vulnerability['severity']
+        elif len(related_vulnerabilities) and 'severity' in related_vulnerabilities[0]:
+            severity_name = related_vulnerabilities[0]['severity']
+
+        return severity_name
 
     def is_vulnerability_allowed(self, vulnerability_id):
         """
