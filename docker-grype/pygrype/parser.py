@@ -98,7 +98,13 @@ class ParseGrypeJSON():
         for match in grype_data['matches']:
             artifact = match['artifact']
             matched_vulnerability = match['vulnerability']
-            related_vulnerabilities = match['related_vulnerabilities']
+
+            try:
+                related_vulnerabilities = match['relatedVulnerabilities']
+            except KeyError:
+                logging.warning(f'No related vulnerabilities found for "{matched_vulnerability["id"]}".')
+                related_vulnerabilities = []
+
             vulnerability = self.analyse_a_vulnerability(
                 artifact,
                 matched_vulnerability,
@@ -173,8 +179,12 @@ class ParseGrypeJSON():
 
         if 'severity' in matched_vulnerability:
             severity_name = matched_vulnerability['severity']
+            logging.debug(f'Found the severity "{severity_name}" in the matched vulnerability.')
         elif len(related_vulnerabilities) and 'severity' in related_vulnerabilities[0]:
             severity_name = related_vulnerabilities[0]['severity']
+            logging.debug(f'Found the severity "{severity_name}" in the related vulnerability.')
+        else:
+            logging.warning(f'Unable to find a severity level for {matched_vulnerability["id"]}')
 
         return severity_name
 
