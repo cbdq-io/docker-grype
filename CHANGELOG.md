@@ -1,7 +1,24 @@
 # Changelog
 
 
-## 1.21.3
+## 1.21.4
+
+### New
+
+* Unfixed CVE-2023-36632 (II). [Ben Dalling]
+
+* Unfixed CVE-2023-36632. [Ben Dalling]
+
+### Changes
+
+* Bump Grype version from 0.63.1 to 0.64.0. [Ben Dalling]
+
+### Fix
+
+* Correct issue when "Severity" is stored in related issues. [Ben Dalling]
+
+
+## 1.21.3 (2023-07-02)
 
 ### Changes
 
