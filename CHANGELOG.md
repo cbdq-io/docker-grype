@@ -1,7 +1,29 @@
 # Changelog
 
 
-## 1.21.4
+## 1.21.5
+
+### Changes
+
+* Bump Grype from 0.64.0 to 0.66.0. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump gitpython from 3.1.31 to 3.1.32. [dependabot[bot]]
+
+  Bumps [gitpython](https://github.com/gitpython-developers/GitPython) from 3.1.31 to 3.1.32.
+  - [Release notes](https://github.com/gitpython-developers/GitPython/releases)
+  - [Changelog](https://github.com/gitpython-developers/GitPython/blob/main/CHANGES)
+  - [Commits](https://github.com/gitpython-developers/GitPython/compare/3.1.31...3.1.32)
+
+  ---
+  updated-dependencies:
+  - dependency-name: gitpython
+    dependency-type: direct:production
+  ...
+
+
+## 1.21.4 (2023-07-17)
 
 ### New
 
