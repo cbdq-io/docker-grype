@@ -1,7 +1,29 @@
 # Changelog
 
 
-## 1.21.6
+## 1.21.7
+
+### Changes
+
+* Bump the version of Grype from 0.67.0 to 0.69.1. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump urllib3 from 2.0.2 to 2.0.6. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 2.0.2 to 2.0.6.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/2.0.2...2.0.6)
+
+  ---
+  updated-dependencies:
+  - dependency-name: urllib3
+    dependency-type: direct:production
+  ...
+
+
+## 1.21.6 (2023-09-13)
 
 ### Changes
 
