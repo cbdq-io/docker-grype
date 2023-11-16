@@ -6,7 +6,7 @@ flake8==6.0.0
 flake8-docstrings==1.7.0
 gitchangelog==3.0.4
 gitdb==4.0.10
-GitPython==3.1.35
+GitPython==3.1.37
 iniconfig==2.0.0
 jmespath==1.0.1
 Mako==1.2.4
@@ -38,5 +38,5 @@ stevedore==5.1.0
 testinfra-bdd==2.2.5
 tomli==2.0.1
 typing_extensions==4.5.0
-urllib3==2.0.6
+urllib3==2.0.7
 yamllint==1.32.0
