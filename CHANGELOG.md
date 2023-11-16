@@ -1,7 +1,68 @@
 # Changelog
 
 
-## 1.21.6
+## 1.21.8
+
+### Changes
+
+* Bump Grype version from 0.69.1 to 0.73.1. [Ben Dalling]
+
+### Fix
+
+* Increment release to fix 1.21.7 overwrite. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump urllib3 from 2.0.6 to 2.0.7. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 2.0.6 to 2.0.7.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/2.0.6...2.0.7)
+
+  ---
+  updated-dependencies:
+  - dependency-name: urllib3
+    dependency-type: direct:production
+  ...
+
+* Build(deps): bump gitpython from 3.1.35 to 3.1.37. [dependabot[bot]]
+
+  Bumps [gitpython](https://github.com/gitpython-developers/GitPython) from 3.1.35 to 3.1.37.
+  - [Release notes](https://github.com/gitpython-developers/GitPython/releases)
+  - [Changelog](https://github.com/gitpython-developers/GitPython/blob/main/CHANGES)
+  - [Commits](https://github.com/gitpython-developers/GitPython/compare/3.1.35...3.1.37)
+
+  ---
+  updated-dependencies:
+  - dependency-name: gitpython
+    dependency-type: direct:production
+  ...
+
+
+## 1.21.7 (2023-10-04)
+
+### Changes
+
+* Bump the version of Grype from 0.67.0 to 0.69.1. [Ben Dalling]
+
+### Other
+
+* Build(deps): bump urllib3 from 2.0.2 to 2.0.6. [dependabot[bot]]
+
+  Bumps [urllib3](https://github.com/urllib3/urllib3) from 2.0.2 to 2.0.6.
+  - [Release notes](https://github.com/urllib3/urllib3/releases)
+  - [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+  - [Commits](https://github.com/urllib3/urllib3/compare/2.0.2...2.0.6)
+
+  ---
+  updated-dependencies:
+  - dependency-name: urllib3
+    dependency-type: direct:production
+  ...
+
+
+## 1.21.6 (2023-09-13)
 
 ### Changes
 
