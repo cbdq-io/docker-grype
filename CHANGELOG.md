@@ -1,11 +1,15 @@
 # Changelog
 
 
-## 1.21.7
+## 1.21.8
 
 ### Changes
 
 * Bump Grype version from 0.69.1 to 0.73.1. [Ben Dalling]
+
+### Fix
+
+* Increment release to fix 1.21.7 overwrite. [Ben Dalling]
 
 ### Other
 
